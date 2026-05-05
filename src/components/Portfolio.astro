@@ -1,0 +1,217 @@
+---
+const projects = [
+  {
+    title: "Verdana Realty",
+    category: "Real Estate Platform",
+    desc: "Full-stack property listing platform with advanced search, agent CRM integration, and mobile-first UI.",
+    tags: ["Next.js", "Node.js", "PostgreSQL"],
+    stat: "340% increase in lead capture",
+    color: "#3b7eff",
+  },
+  {
+    title: "Meridian Co.",
+    category: "Corporate Website",
+    desc: "Complete brand refresh and corporate site for a mid-market logistics company, including SEO and content strategy.",
+    tags: ["Astro", "Tailwind", "SEO"],
+    stat: "#1 ranking in target keywords",
+    color: "#00d4ff",
+  },
+  {
+    title: "Solara Wellness",
+    category: "E-Commerce & Booking",
+    desc: "Health and wellness e-commerce store with integrated booking system, subscription management, and custom checkout flow.",
+    tags: ["Shopify", "React", "Stripe"],
+    stat: "2.8× conversion uplift",
+    color: "#7c5cfc",
+  },
+  {
+    title: "Atlas FinTech",
+    category: "SaaS Dashboard",
+    desc: "Internal analytics dashboard for a fintech startup — data visualization, role-based access, and real-time reporting.",
+    tags: ["React", "D3.js", "REST API"],
+    stat: "From MVP to launch in 8 weeks",
+    color: "#00e5a0",
+  },
+];
+---
+<section class="ns-portfolio" id="portfolio">
+  <div class="ns-portfolio__inner">
+    <div class="ns-section-header">
+      <span class="ns-eyebrow">Portfolio</span>
+      <h2 class="ns-section-title">Work that<br /><span class="ns-grad">speaks for itself</span></h2>
+      <p class="ns-section-desc">A selection of projects delivered by our team — each one built to solve real business problems and drive measurable results.</p>
+    </div>
+
+    <div class="ns-portfolio__grid">
+      {projects.map((p) => (
+        <div class="ns-project-card" style={`--accent-local:${p.color}`}>
+          <div class="ns-project-card__preview" aria-hidden="true">
+            <div class="ns-preview-chrome">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="ns-preview-body">
+              <div class="ns-preview-nav"></div>
+              <div class="ns-preview-hero" style={`background:linear-gradient(135deg, ${p.color}22, ${p.color}08)`}>
+                <div class="ns-preview-lines">
+                  <div class="ns-preview-line" style={`background:${p.color}40;width:60%`}></div>
+                  <div class="ns-preview-line" style={`background:${p.color}25;width:40%`}></div>
+                  <div class="ns-preview-btn" style={`background:${p.color}`}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ns-project-card__info">
+            <div class="ns-project-card__meta">
+              <span class="ns-project-cat">{p.category}</span>
+              <div class="ns-project-stat">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                {p.stat}
+              </div>
+            </div>
+            <h3 class="ns-project-title">{p.title}</h3>
+            <p class="ns-project-desc">{p.desc}</p>
+            <div class="ns-project-tags">
+              {p.tags.map(t => <span>{t}</span>)}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.ns-portfolio {
+  padding: 7rem 7%;
+  background: var(--navy-2);
+  position: relative;
+}
+.ns-portfolio::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,.5), transparent);
+}
+.ns-portfolio__inner { max-width: 1200px; margin: 0 auto; }
+
+.ns-portfolio__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.ns-project-card {
+  background: var(--navy-3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.ns-project-card:hover {
+  border-color: var(--accent-local);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(0,0,0,.35);
+}
+
+/* Browser mockup */
+.ns-project-card__preview {
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,.02);
+}
+.ns-preview-chrome {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: .6rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.ns-preview-chrome span {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+}
+.ns-preview-chrome span:first-child { background: #ff5f57; }
+.ns-preview-chrome span:nth-child(2) { background: #febc2e; }
+.ns-preview-chrome span:last-child { background: #28c840; }
+.ns-preview-body { padding: .75rem; }
+.ns-preview-nav {
+  height: 6px;
+  background: rgba(255,255,255,.06);
+  border-radius: 3px;
+  margin-bottom: .6rem;
+}
+.ns-preview-hero {
+  height: 100px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.ns-preview-lines { width: 100%; }
+.ns-preview-line {
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: .4rem;
+}
+.ns-preview-btn {
+  width: 60px; height: 18px;
+  border-radius: 4px;
+  margin-top: .6rem;
+  opacity: .85;
+}
+
+/* Info */
+.ns-project-card__info { padding: 1.5rem 1.75rem 1.75rem; }
+.ns-project-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .75rem;
+}
+.ns-project-cat {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent-local, var(--accent));
+}
+.ns-project-stat {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .68rem;
+  color: var(--muted);
+}
+.ns-project-stat svg { color: var(--accent-local, var(--accent)); }
+.ns-project-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .5rem;
+}
+.ns-project-desc {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.ns-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.ns-project-tags span {
+  font-size: .68rem;
+  color: var(--muted);
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .2rem .55rem;
+}
+
+@media (max-width: 768px) {
+  .ns-portfolio__grid { grid-template-columns: 1fr; }
+  .ns-portfolio { padding: 5rem 5%; }
+}
+</style>

@@ -1,0 +1,50 @@
+---
+import { menuLinks, siteConfig } from "@/site.config";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+---
+
+<nav
+  id="main-nav"
+  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300"
+  style="backdrop-filter: blur(0px); background: transparent; border-bottom: 1px solid transparent;"
+>
+  <a href="/" class="text-lg font-bold text-white tracking-tight hover:text-green-400 transition-colors duration-200" id="nav-logo">
+    {siteConfig.title}
+  </a>
+  <div class="flex items-center gap-6">
+    {menuLinks.map((link) => (
+      <a href={link.path} class="nav-link relative text-sm text-white/70 hover:text-white transition-colors duration-200 font-medium">
+        {link.title}
+        <span class="nav-underline absolute -bottom-0.5 left-0 h-px w-0 bg-green-400 transition-all duration-300"></span>
+      </a>
+    ))}
+    <ThemeToggle />
+  </div>
+</nav>
+
+<script is:inline>
+  const nav = document.getElementById("main-nav");
+
+  window.addEventListener("scroll", () => {
+    if (!nav) return;
+    if (window.scrollY > 40) {
+      nav.style.backdropFilter = "blur(16px)";
+      nav.style.background = "rgba(2, 8, 23, 0.75)";
+      nav.style.borderBottomColor = "rgba(255,255,255,0.08)";
+      nav.style.paddingTop = "10px";
+      nav.style.paddingBottom = "10px";
+    } else {
+      nav.style.backdropFilter = "blur(0px)";
+      nav.style.background = "transparent";
+      nav.style.borderBottomColor = "transparent";
+      nav.style.paddingTop = "16px";
+      nav.style.paddingBottom = "16px";
+    }
+  });
+
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    const underline = link.querySelector(".nav-underline");
+    link.addEventListener("mouseenter", () => { if (underline) underline.style.width = "100%"; });
+    link.addEventListener("mouseleave", () => { if (underline) underline.style.width = "0"; });
+  });
+</script>

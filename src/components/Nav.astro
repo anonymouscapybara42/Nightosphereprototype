@@ -1,0 +1,181 @@
+---
+const links = [
+  { href: "/#services",      label: "Services"      },
+  { href: "/#capabilities",  label: "Capabilities"  },
+  { href: "/#portfolio",     label: "Portfolio"      },
+  { href: "/about",          label: "About"          },
+];
+---
+<nav class="ns-nav" id="ns-nav">
+  <a href="/" class="ns-nav__logo" aria-label="Nightosphere home">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="14" cy="14" r="13" stroke="#3b7eff" stroke-width="1.5"/>
+      <circle cx="14" cy="14" r="7" fill="#3b7eff" opacity=".25"/>
+      <circle cx="14" cy="14" r="3" fill="#3b7eff"/>
+    </svg>
+    <span>Nightosphere</span>
+  </a>
+
+  <ul class="ns-nav__links">
+    {links.map(l => (
+      <li><a href={l.href}>{l.label}</a></li>
+    ))}
+  </ul>
+
+  <a href="/#contact" class="ns-btn ns-btn--sm">Get a Quote</a>
+
+  <button class="ns-nav__burger" id="ns-burger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="ns-nav__mobile" id="ns-mobile">
+  <ul>
+    {links.map(l => (
+      <li><a href={l.href}>{l.label}</a></li>
+    ))}
+    <li><a href="/#contact" class="ns-btn" style="width:100%;justify-content:center;">Get a Quote</a></li>
+  </ul>
+</div>
+
+<style>
+.ns-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.1rem 5%;
+  background: rgba(10,15,30,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background .3s;
+}
+.ns-nav.scrolled {
+  background: rgba(10,15,30,0.98);
+}
+.ns-nav__logo {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.ns-nav__links {
+  display: flex;
+  list-style: none;
+  gap: .25rem;
+  margin-left: auto;
+}
+.ns-nav__links a {
+  font-size: .9rem;
+  font-weight: 400;
+  color: var(--muted);
+  padding: .4rem .85rem;
+  border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.ns-nav__links a:hover {
+  color: var(--text);
+  background: rgba(59,126,255,.08);
+}
+.ns-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .55rem 1.3rem;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: .875rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  white-space: nowrap;
+}
+.ns-btn:hover {
+  background: #2a6aee;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(59,126,255,.35);
+}
+.ns-btn--sm { font-size: .8rem; padding: .45rem 1rem; }
+.ns-nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .3rem;
+  margin-left: auto;
+}
+.ns-nav__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
+}
+.ns-nav__mobile {
+  display: none;
+  position: fixed;
+  top: 65px; left: 0; right: 0;
+  z-index: 99;
+  background: var(--navy-2);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 5% 2rem;
+  transform: translateY(-110%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
+.ns-nav__mobile.open {
+  transform: translateY(0);
+}
+.ns-nav__mobile ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.ns-nav__mobile a {
+  display: block;
+  padding: .65rem 0;
+  font-size: 1rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .ns-nav__links, .ns-nav > .ns-btn { display: none; }
+  .ns-nav__burger { display: flex; }
+  .ns-nav__mobile { display: block; }
+}
+</style>
+
+<script>
+const nav     = document.getElementById('ns-nav')!;
+const burger  = document.getElementById('ns-burger')!;
+const mobile  = document.getElementById('ns-mobile')!;
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+burger.addEventListener('click', () => {
+  const open = mobile.classList.toggle('open');
+  burger.setAttribute('aria-expanded', String(open));
+});
+
+mobile.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobile.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  });
+});
+</script>

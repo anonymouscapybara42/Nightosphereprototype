@@ -1,0 +1,183 @@
+---
+const services = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h6m8 0h6M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66 4.24 4.24M4.93 19.07l4.24-4.24m5.66-5.66 4.24-4.24"/></svg>`,
+    title: "Strategy & Planning",
+    desc: "We start every engagement with discovery and architecture — mapping your goals, audience, and competitive landscape before a single line of code is written.",
+    tags: ["Discovery", "Roadmapping", "Architecture"],
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>`,
+    title: "Design & Branding",
+    desc: "Our in-house design team crafts interfaces that convert — pixel-perfect UI, consistent brand systems, and collateral that commands attention.",
+    tags: ["UI/UX", "Brand Identity", "Print Design"],
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+    title: "Web Development",
+    desc: "Full-stack engineering for fast, secure, and scalable web applications. From landing pages to complex platforms — built to perform.",
+    tags: ["Front-End", "Back-End", "E-Commerce"],
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6m-3-3h6"/></svg>`,
+    title: "SEO & Growth",
+    desc: "Data-driven search optimization that drives qualified traffic. We handle technical SEO, content structure, and authority-building strategies.",
+    tags: ["Technical SEO", "On-Page", "Analytics"],
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: "Maintenance & Support",
+    desc: "Ongoing technical support, security monitoring, performance optimization, and updates — so your site stays healthy and your team stays focused.",
+    tags: ["Hosting", "Security", "Updates"],
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+    title: "Performance & Analytics",
+    desc: "Continuous monitoring of Core Web Vitals, conversion metrics, and user behavior — with monthly reporting that drives real decisions.",
+    tags: ["Monitoring", "Reporting", "CRO"],
+  },
+];
+---
+<section class="ns-services" id="services">
+  <div class="ns-services__inner">
+    <div class="ns-section-header">
+      <span class="ns-eyebrow">What We Do</span>
+      <h2 class="ns-section-title">Services built for<br /><span class="ns-grad">serious businesses</span></h2>
+      <p class="ns-section-desc">Every service is executed in-house — no subcontractors, no handoffs, no gaps. One team, full accountability.</p>
+    </div>
+
+    <div class="ns-services__grid">
+      {services.map((s, i) => (
+        <div class="ns-service-card" style={`--delay:${i * 60}ms`}>
+          <div class="ns-service-card__icon" set:html={s.icon} />
+          <h3 class="ns-service-card__title">{s.title}</h3>
+          <p class="ns-service-card__desc">{s.desc}</p>
+          <div class="ns-service-card__tags">
+            {s.tags.map(t => <span>{t}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.ns-services {
+  padding: 7rem 7%;
+  background: var(--navy-2);
+  position: relative;
+}
+.ns-services::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.ns-services__inner { max-width: 1200px; margin: 0 auto; }
+
+/* Shared section header */
+.ns-section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.ns-eyebrow {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 1rem;
+}
+.ns-section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.ns-grad {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ns-section-desc {
+  font-size: .95rem;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.ns-services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.ns-service-card {
+  background: var(--navy-3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+  position: relative;
+  overflow: hidden;
+}
+.ns-service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(59,126,255,.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.ns-service-card:hover {
+  border-color: rgba(59,126,255,.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.3);
+}
+.ns-service-card:hover::before { opacity: 1; }
+
+.ns-service-card__icon {
+  width: 44px; height: 44px;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+.ns-service-card__icon svg { width: 100%; height: 100%; }
+.ns-service-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: .6rem;
+  color: var(--text);
+}
+.ns-service-card__desc {
+  font-size: .875rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+.ns-service-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.ns-service-card__tags span {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--accent);
+  background: rgba(59,126,255,.1);
+  border: 1px solid rgba(59,126,255,.2);
+  border-radius: 999px;
+  padding: .2rem .65rem;
+}
+
+@media (max-width: 900px) {
+  .ns-services__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 580px) {
+  .ns-services__grid { grid-template-columns: 1fr; }
+  .ns-services { padding: 5rem 5%; }
+}
+</style>

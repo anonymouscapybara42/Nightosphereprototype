@@ -1,0 +1,405 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const team = [
+  {
+    name: "— Your Name —",
+    role: "Founder & Creative Director",
+    bio: "With over a decade of experience in digital strategy and brand development, [Name] founded Nightosphere to provide businesses with the same caliber of web services that enterprise companies take for granted — delivered with personal attention and accountability.",
+    skills: ["Brand Strategy", "UX Direction", "Client Relations"],
+    initials: "YN",
+    color: "#3b7eff",
+  },
+  {
+    name: "— Your Name —",
+    role: "Lead Developer",
+    bio: "A full-stack engineer specializing in performant web applications, [Name] brings deep technical expertise in modern JavaScript frameworks, server-side architecture, and API integration to every project.",
+    skills: ["Full-Stack", "API Architecture", "Performance"],
+    initials: "YN",
+    color: "#00d4ff",
+  },
+  {
+    name: "— Your Name —",
+    role: "UI/UX Designer",
+    bio: "[Name] combines research-driven design thinking with strong visual execution. From wireframes to final UI, every interface is crafted to reduce friction and drive the user toward clear conversion goals.",
+    skills: ["UI Design", "User Research", "Prototyping"],
+    initials: "YN",
+    color: "#7c5cfc",
+  },
+  {
+    name: "— Your Name —",
+    role: "SEO & Growth Strategist",
+    bio: "[Name] leads our search and content strategy practice, with a proven track record of ranking competitive keywords and building organic acquisition channels for clients across multiple industries.",
+    skills: ["Technical SEO", "Content Strategy", "Analytics"],
+    initials: "YN",
+    color: "#00e5a0",
+  },
+];
+---
+<BaseLayout
+  title="About Us — Nightosphere"
+  description="Meet the Nightosphere team — a dedicated group of designers, developers, and strategists committed to delivering exceptional web services."
+>
+  <Nav />
+
+  <main class="ns-about">
+    <!-- Page Header -->
+    <section class="ns-about__header">
+      <div class="ns-about__header-bg" aria-hidden="true">
+        <div class="ns-about__header-glow"></div>
+        <div class="ns-about__header-grid"></div>
+      </div>
+      <div class="ns-about__header-inner">
+        <span class="ns-eyebrow">The Team</span>
+        <h1 class="ns-about__title">People who own<br /><span class="ns-grad">the outcome.</span></h1>
+        <p class="ns-about__desc">Nightosphere is a focused, in-house team of specialists. Every project is handled directly by the people you meet — no subcontractors, no hand-offs, no surprises.</p>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="ns-values">
+      <div class="ns-values__inner">
+        <div class="ns-value-item">
+          <span class="ns-value-num">01</span>
+          <div>
+            <h3>Radical Transparency</h3>
+            <p>We communicate clearly about scope, timelines, and budget — before and throughout every engagement.</p>
+          </div>
+        </div>
+        <div class="ns-value-item">
+          <span class="ns-value-num">02</span>
+          <div>
+            <h3>In-House Always</h3>
+            <p>Every service we offer is executed by our own team. Your project never leaves our hands.</p>
+          </div>
+        </div>
+        <div class="ns-value-item">
+          <span class="ns-value-num">03</span>
+          <div>
+            <h3>Results First</h3>
+            <p>Beautiful work that doesn't drive results is decoration. We measure success by what happens after launch.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Grid -->
+    <section class="ns-team">
+      <div class="ns-team__inner">
+        <div class="ns-section-header">
+          <span class="ns-eyebrow">Meet the Team</span>
+          <h2 class="ns-section-title">The people behind<br /><span class="ns-grad">your project</span></h2>
+        </div>
+
+        <div class="ns-team__grid">
+          {team.map(m => (
+            <div class="ns-member-card">
+              <div class="ns-member-photo" style={`--c:${m.color}`}>
+                <!-- Replace this div with an <img> tag when you have photos -->
+                <div class="ns-member-avatar" aria-hidden="true">{m.initials}</div>
+                <div class="ns-member-photo-overlay"></div>
+              </div>
+              <div class="ns-member-info">
+                <h3 class="ns-member-name">{m.name}</h3>
+                <span class="ns-member-role" style={`color:${m.color}`}>{m.role}</span>
+                <p class="ns-member-bio">{m.bio}</p>
+                <div class="ns-member-skills">
+                  {m.skills.map(s => <span>{s}</span>)}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="ns-team__note">
+          <p>
+            <strong>Note to editor:</strong> Replace the initials placeholder and <code>--c</code> color in each <code>.ns-member-photo</code> with a real <code>&lt;img&gt;</code> tag pointing to a team photo.
+            Example: <code>&lt;img src="/team/alex.jpg" alt="Alex Rivera" /&gt;</code>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA strip -->
+    <section class="ns-about__cta">
+      <div class="ns-about__cta-inner">
+        <h2>Ready to work with us?</h2>
+        <p>Reach out and let's talk about your project.</p>
+        <a href="/#contact" class="ns-btn ns-btn--lg">Start a Conversation</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+/* ---- Shared (repeated here so this page is self-contained) ---- */
+.ns-eyebrow {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 1rem;
+}
+.ns-section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.ns-grad {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ns-section-header { text-align: center; margin-bottom: 4rem; }
+.ns-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  white-space: nowrap;
+}
+.ns-btn--lg {
+  padding: .8rem 1.9rem;
+  font-size: 1rem;
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid var(--accent);
+}
+.ns-btn--lg:hover {
+  background: #2a6aee;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(59,126,255,.4);
+}
+
+/* ---- About Header ---- */
+.ns-about { padding-top: 80px; }
+.ns-about__header {
+  position: relative;
+  padding: 6rem 7% 5rem;
+  overflow: hidden;
+  background: var(--navy-2);
+  border-bottom: 1px solid var(--border);
+}
+.ns-about__header-bg { position: absolute; inset: 0; pointer-events: none; }
+.ns-about__header-glow {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,126,255,.18) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  filter: blur(60px);
+}
+.ns-about__header-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59,126,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,126,255,.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+.ns-about__header-inner {
+  max-width: 700px;
+  position: relative;
+  z-index: 1;
+}
+.ns-about__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+.ns-about__desc {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 540px;
+}
+
+/* ---- Values ---- */
+.ns-values {
+  padding: 4rem 7%;
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
+}
+.ns-values__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.ns-value-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.ns-value-num {
+  font-family: 'Syne', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: .5;
+  letter-spacing: .1em;
+  padding-top: .15rem;
+}
+.ns-value-item h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .4rem;
+}
+.ns-value-item p {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* ---- Team ---- */
+.ns-team { padding: 7rem 7%; background: var(--navy-2); }
+.ns-team__inner { max-width: 1100px; margin: 0 auto; }
+
+.ns-team__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.ns-member-card {
+  background: var(--navy-3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .25s, transform .25s;
+}
+.ns-member-card:hover {
+  border-color: rgba(59,126,255,.35);
+  transform: translateY(-3px);
+}
+
+/* Photo placeholder */
+.ns-member-photo {
+  height: 200px;
+  background: linear-gradient(135deg, var(--c, #3b7eff)22, var(--c, #3b7eff)08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.ns-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+.ns-member-avatar {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--c, #3b7eff);
+  opacity: .4;
+  letter-spacing: .05em;
+  z-index: 1;
+}
+.ns-member-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, var(--navy-3) 100%);
+}
+
+/* Info */
+.ns-member-info { padding: 1.5rem 1.75rem 1.75rem; }
+.ns-member-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .2rem;
+}
+.ns-member-role {
+  display: block;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: .85rem;
+}
+.ns-member-bio {
+  font-size: .875rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.ns-member-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.ns-member-skills span {
+  font-size: .68rem;
+  color: var(--muted);
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .2rem .55rem;
+}
+
+/* Editor note */
+.ns-team__note {
+  background: rgba(59,126,255,.06);
+  border: 1px solid rgba(59,126,255,.2);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.ns-team__note strong { color: var(--accent); }
+.ns-team__note code {
+  background: rgba(255,255,255,.06);
+  border-radius: 4px;
+  padding: .1rem .35rem;
+  font-size: .75rem;
+  color: var(--accent-2);
+}
+
+/* ---- CTA strip ---- */
+.ns-about__cta {
+  padding: 5rem 7%;
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.ns-about__cta-inner { max-width: 500px; margin: 0 auto; }
+.ns-about__cta h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: .6rem;
+}
+.ns-about__cta p {
+  font-size: .95rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .ns-values__inner { grid-template-columns: 1fr; }
+  .ns-team__grid { grid-template-columns: 1fr; }
+  .ns-team, .ns-values, .ns-about__header { padding-inline: 5%; }
+}
+</style>

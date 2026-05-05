@@ -1,0 +1,24 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "Nightosphere — Information & Web Services",
+  description = "Nightosphere is a full-service information and web development company delivering strategy, design, and technology for ambitious businesses.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

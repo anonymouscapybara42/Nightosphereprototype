@@ -1,0 +1,41 @@
+---
+const skillGroups = [
+  {
+    category: "Frontend",
+    skills: ["HTML/CSS", "JavaScript", "TypeScript", "React", "Astro", "Tailwind CSS"],
+  },
+  {
+    category: "Backend",
+    skills: ["Node.js", "Python", "REST APIs", "SQL", "Git", "Linux"],
+  },
+  {
+    category: "Engineering",
+    skills: ["Embedded Systems", "C/C++", "Algorithms", "Data Structures", "Computer Architecture"],
+  },
+  {
+    category: "Creative",
+    skills: ["Photography", "Photo Editing", "UI/UX Design", "Figma", "Branding"],
+  },
+];
+---
+
+<section class="py-24 px-6" id="skills">
+  <div class="mx-auto max-w-3xl">
+    <p class="text-xs uppercase tracking-widest text-green-400 font-semibold mb-2">Expertise</p>
+    <h2 class="mb-12 text-3xl font-bold text-white sm:text-4xl">Skills &amp; <span class="text-green-400">Tools</span></h2>
+    <div class="grid gap-6 sm:grid-cols-2">
+      {skillGroups.map((group) => (
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h3 class="mb-4 text-sm font-semibold uppercase tracking-widest text-green-400">{group.category}</h3>
+          <div class="flex flex-wrap gap-2">
+            {group.skills.map((skill) => (
+              <span class="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 hover:text-white hover:border-white/30 transition-colors">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

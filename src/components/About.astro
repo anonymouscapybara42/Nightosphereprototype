@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import profileImg from "@/assets/profile.jpg";
+---
+
+<section class="py-24 px-6" id="about">
+  <div class="mx-auto max-w-3xl">
+    <h2 class="mb-12 text-3xl font-bold text-white sm:text-4xl">
+      About <span class="text-green-400">Me</span>
+    </h2>
+    <div class="grid gap-12 sm:grid-cols-2 items-center">
+      <div class="order-2 sm:order-1">
+        <p class="mb-4 text-white/70 leading-relaxed">
+          I'm <span class="text-white font-semibold">Ashley G. Glaraga</span>, a Computer Engineer with a passion
+          for building clean, performant web experiences and capturing the world through a lens.
+        </p>
+        <p class="mb-4 text-white/70 leading-relaxed">
+          I specialize in full-stack web development, UI/UX design, and creative photography —
+          blending technical precision with an eye for aesthetics.
+        </p>
+        <p class="text-white/70 leading-relaxed">
+          When I'm not coding, you'll find me exploring new places, experimenting with photography,
+          or tinkering with the latest tech.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <span class="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-xs text-white/60">Web Dev</span>
+          <span class="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-xs text-white/60">UI/UX</span>
+          <span class="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-xs text-white/60">Photography</span>
+          <span class="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-xs text-white/60">Computer Engineering</span>
+        </div>
+      </div>
+      <div class="order-1 sm:order-2 flex justify-center">
+        <div class="relative">
+          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-green-500/30 to-transparent blur-xl"></div>
+          <Image
+            src={profileImg}
+            alt="Ashley Glaraga"
+            width={320}
+            height={320}
+            class="relative rounded-2xl object-cover w-64 h-64 sm:w-80 sm:h-80 border border-white/10"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
