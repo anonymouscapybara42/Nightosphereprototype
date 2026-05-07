@@ -2,532 +2,635 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-
-const team = [
-  {
-    name: "— Your Name —",
-    role: "Founder & Creative Director",
-    bio: "With over a decade of experience in digital strategy and brand development, [Name] founded Nightosphere to provide businesses with the same caliber of web services that enterprise companies take for granted — delivered with personal attention and accountability.",
-    skills: ["Brand Strategy", "UX Direction", "Client Relations"],
-    initials: "YN",
-    color: "#3b7eff",
-  },
-  {
-    name: "— Your Name —",
-    role: "Lead Developer",
-    bio: "A full-stack engineer specializing in performant web applications, [Name] brings deep technical expertise in modern JavaScript frameworks, server-side architecture, and API integration to every project.",
-    skills: ["Full-Stack", "API Architecture", "Performance"],
-    initials: "YN",
-    color: "#00d4ff",
-  },
-  {
-    name: "— Your Name —",
-    role: "UI/UX Designer",
-    bio: "[Name] combines research-driven design thinking with strong visual execution. From wireframes to final UI, every interface is crafted to reduce friction and drive the user toward clear conversion goals.",
-    skills: ["UI Design", "User Research", "Prototyping"],
-    initials: "YN",
-    color: "#7c5cfc",
-  },
-  {
-    name: "— Your Name —",
-    role: "SEO & Growth Strategist",
-    bio: "[Name] leads our search and content strategy practice, with a proven track record of ranking competitive keywords and building organic acquisition channels for clients across multiple industries.",
-    skills: ["Technical SEO", "Content Strategy", "Analytics"],
-    initials: "YN",
-    color: "#00e5a0",
-  },
-];
+import profileImage from "../assets/profile.jpg";
 ---
+
 <BaseLayout
-  title="About Us — Nightosphere"
-  description="Meet the Nightosphere team — a dedicated group of designers, developers, and strategists committed to delivering exceptional web services."
+	title="About Us — Nightosphere"
+	description="Meet the Nightosphere team — a dedicated group of designers, developers, and strategists committed to delivering exceptional web services."
 >
-  <Nav />
+	<Nav />
 
-  <main class="ns-about">
-    <!-- Page Header -->
-    <section class="ns-about__header">
-      <div class="ns-about__header-bg" aria-hidden="true">
-        <div class="ns-about__header-glow"></div>
-        <div class="ns-about__header-grid"></div>
-      </div>
-      <div class="ns-about__header-inner">
-        <span class="ns-eyebrow">The Team</span>
-        <h1 class="ns-about__title">The minds behind<br /><span class="ns-grad">the outcome.</span></h1>
-        <p class="ns-about__desc">Nightosphere is a focused, in-house team of specialists. Every project is handled directly by the people you meet — no subcontractors, no hand-offs, no surprises.</p>
-      </div>
-    </section>
+	<main class="ns-about">
+		<!-- Page Header -->
+		<section class="ns-about__header">
+			<div class="ns-about__header-bg" aria-hidden="true">
+				<div class="ns-about__header-glow"></div>
+				<div class="ns-about__header-grid"></div>
+			</div>
+			<div class="ns-about__header-inner">
+				<span class="ns-eyebrow">The Team</span>
+				<h1 class="ns-about__title">
+					The minds behind<br /><span class="ns-grad">the outcome.</span>
+				</h1>
+				<p class="ns-about__desc">
+					We don't just build websites we design, brochures, and other creative materials to strengthen your brand's identity
+          and make a lasting impression. Our team of talented designers, developers, and strategists work together to create
+          cohesive and impactful digital experiences that resonate with your audience and elevate your brand.
+				</p>
+			</div>
+		</section>
 
-    <!-- Values -->
-    <section class="ns-values">
-      <div class="ns-values__inner">
-        <div class="ns-value-item">
-          <span class="ns-value-num">01</span>
-          <div>
-            <h3>Design</h3>
-            <p>We work with you to understand your goals, brand identity, and target audience. From there, we create a detailed plan and design concept that fits your vision.</p>
-          </div>
-        </div>
-        <div class="ns-value-item">
-          <span class="ns-value-num">02</span>
-          <div>
-            <h3>Developing Functional and  Responsive Websites</h3>
-            <p>We make sure your website is fast, secure, and search-engine friendly so that it attracts the right visitors and ranks higher in search results.</p>
-          </div>
-        </div>
-        <div class="ns-value-item">
-          <span class="ns-value-num">03</span>
-          <div>
-            <h3>Optimizing Performance and SEO</h3>
-            <p>Beautiful work that doesn't drive results is decoration. We measure success by what happens after launch.</p>
-          </div>
-        </div>
-        <div class="ns-value-item">
-          <span class="ns-value-num">04</span>
-          <div>
-            <h3>Ongoing support and maintenance</h3>
-            <p>Our work doesn't stop at launch. We provide continuous updates, technical support, and improvements to keep your website running smoothly.</p>
-          </div>
-        </div>
-      </div>
-      
-      
-    </section>
+		<!-- Values -->
+		<section class="ns-values">
+			<div class="ns-values__inner">
+				<div class="ns-value-item">
+					<span class="ns-value-num">01</span>
+					<div>
+						<h3>Design</h3>
+						<p>
+							We work with you to understand your goals, brand identity, and target audience. From
+							there, we create a detailed plan and design concept that fits your vision.
+						</p>
+					</div>
+				</div>
+				<div class="ns-value-item">
+					<span class="ns-value-num">02</span>
+					<div>
+						<h3>Developing Functional and Responsive Websites</h3>
+						<p>
+							We make sure your website is fast, secure, and search-engine friendly so that it
+							attracts the right visitors and ranks higher in search results.
+						</p>
+					</div>
+				</div>
+				<div class="ns-value-item">
+					<span class="ns-value-num">03</span>
+					<div>
+						<h3>Optimizing Performance and SEO</h3>
+						<p>
+							Beautiful work that doesn't drive results is decoration. We measure success by what
+							happens after launch.
+						</p>
+					</div>
+				</div>
+				<div class="ns-value-item">
+					<span class="ns-value-num">04</span>
+					<div>
+						<h3>Ongoing Support and Maintenance</h3>
+						<p>
+							Our work doesn't stop at launch. We provide continuous updates, technical support, and
+							improvements to keep your website running smoothly.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <!-- Team Grid -->
-    <section class="ns-team">
-      <div class="ns-team__inner">
-        <div class="ns-section-header">
-          <span class="ns-eyebrow">Meet the Team</span>
-          <h2 class="ns-section-title">The people behind<br /><span class="ns-grad">your project</span></h2>
-        </div>
+		<!-- Meet the Team -->
+		<section class="ns-team">
+			<div class="ns-team__inner">
+				<div class="ns-section-header">
+					<span class="ns-eyebrow">Meet the Team</span>
+					<h2 class="ns-section-title">
+						The people behind<br /><span class="ns-grad">your project</span>
+					</h2>
+				</div>
 
-        <div class="ns-team__grid">
-          {team.map(m => (
-            <div class="ns-member-card">
-              <div class="ns-member-photo" style={`--c:${m.color}`}>
-                <!-- Replace this div with an <img> tag when you have photos -->
-                <div class="ns-member-avatar" aria-hidden="true">{m.initials}</div>
-                <div class="ns-member-photo-overlay"></div>
-              </div>
-              <div class="ns-member-info">
-                <h3 class="ns-member-name">{m.name}</h3>
-                <span class="ns-member-role" style={`color:${m.color}`}>{m.role}</span>
-                <p class="ns-member-bio">{m.bio}</p>
-                <div class="ns-member-skills">
-                  {m.skills.map(s => <span>{s}</span>)}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+				<div class="ns-founder-card">
+					<!-- Left: Photo -->
+					<div class="ns-founder-img-wrap">
+						<img src={profileImage.src} alt="Ashley Glaraga" class="ns-founder-img" />
+						<div class="ns-founder-img-glow" aria-hidden="true"></div>
+						<div class="ns-founder-role-badge">
+							<span id="ns-typing"></span><span class="ns-cursor">|</span>
+						</div>
+					</div>
 
-        <div class="ns-team__note">
-          <p>
-            <strong>Note to editor:</strong> Replace the initials placeholder and <code>--c</code> color in each <code>.ns-member-photo</code> with a real <code>&lt;img&gt;</code> tag pointing to a team photo.
-            Example: <code>&lt;img src="/team/alex.jpg" alt="Alex Rivera" /&gt;</code>
-          </p>
-        </div>
-      </div>
-    </section>
+					<!-- Right: Info -->
+					<div class="ns-founder-info">
+						<span class="ns-eyebrow">About</span>
+						<h3 class="ns-founder-name">Ashley Glaraga</h3>
+						<p class="ns-founder-bio">
+							We at Nightosphere Information Services are driven by innovation, creativity, and a
+							passion for building future-ready digital experiences. Led by Ashley Glaraga, with a
+							strong vision for modern web development and design, we trust in creating
+							opportunities that inspire growth, collaboration, and exceptional results. Think
+							bigger. Build the future.
+						</p>
+						<div class="ns-founder-skills">
+							<span>Computer Engineering</span>
+							<span>UI/UX Design</span>
+							<span>Frontend Development</span>
+							<span>Digital Strategy</span>
+							<span>Photography</span>
+							<span>Videography</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <!-- Skills Section -->
-    <section class="ns-skills">
-      <div class="ns-skills__inner">
-        <div class="ns-skills__content">
-          <span class="ns-eyebrow">Skills</span>
-          <h2 class="ns-skills__title">Tools of<br /><span class="ns-skills__subtitle">the trade</span></h2>
-          <p class="ns-skills__desc">Technologies and tools we work with regularly</p>
-        </div>
-        
-        <div class="ns-skills__grid">
-          <div class="ns-skill-badge">
-            <span class="ns-skill-icon">⚡</span>
-            <span>JavaScript</span>
-          </div>
-          <div class="ns-skill-badge">
-            <span class="ns-skill-icon">🚀</span>
-            <span>Astro</span>
-          </div>
-          <div class="ns-skill-badge">
-            <span class="ns-skill-icon">⚛️</span>
-            <span>React</span>
-          </div>
-          <div class="ns-skill-badge">
-            <span class="ns-skill-icon">🎨</span>
-            <span>CSS</span>
-          </div>
-          <div class="ns-skill-badge">
-            <span class="ns-skill-icon">📱</span>
-            <span>React Native</span>
-          </div>
-          <div class="ns-skill-badge">
-            <span class="ns-skill-icon">🎬</span>
-            <span>Video Editing</span>
-          </div>
-          <div class="ns-skill-badge">
-            <span class="ns-skill-icon">🎥</span>
-            <span>Photography</span>
-          </div>
-          <div class="ns-skill-badge">
-            <span class="ns-skill-icon">🛠️</span>
-            <span>UI/UX Design</span>
-          </div>
-        </div>
-      </div>
-    </section>
+		<!-- Skills Section -->
+		<section class="ns-skills">
+			<div class="ns-skills__inner">
+				<div class="ns-skills__content">
+					<span class="ns-eyebrow">Skills</span>
+					<h2 class="ns-skills__title">Tools of<br /><span class="ns-grad">the trade</span></h2>
+					<p class="ns-skills__desc">Technologies and tools we work with regularly</p>
+				</div>
+				<div class="ns-skills__grid">
+					<div class="ns-skill-badge">
+						<span class="ns-skill-icon">⚡</span><span>JavaScript</span>
+					</div>
+					<div class="ns-skill-badge"><span class="ns-skill-icon">🚀</span><span>Astro</span></div>
+					<div class="ns-skill-badge"><span class="ns-skill-icon">⚛️</span><span>React</span></div>
+					<div class="ns-skill-badge"><span class="ns-skill-icon">🎨</span><span>CSS</span></div>
+					<div class="ns-skill-badge">
+						<span class="ns-skill-icon">📱</span><span>React Native</span>
+					</div>
+					<div class="ns-skill-badge">
+						<span class="ns-skill-icon">🎬</span><span>Video Editing</span>
+					</div>
+					<div class="ns-skill-badge">
+						<span class="ns-skill-icon">🎥</span><span>Photography</span>
+					</div>
+					<div class="ns-skill-badge">
+						<span class="ns-skill-icon">🛠️</span><span>UI/UX Design</span>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <!-- CTA strip -->
-    <section class="ns-about__cta">
-      <div class="ns-about__cta-inner">
-        <h2>Ready to work with us?</h2>
-        <p>Reach out and let's talk about your project.</p>
-        <a href="/#contact" class="ns-btn ns-btn--lg">Start a Conversation</a>
-      </div>
-    </section>
-  </main>
+		<!-- CTA Strip -->
+		<section class="ns-about__cta">
+			<div class="ns-about__cta-inner">
+				<h2>Ready to work with us?</h2>
+				<p>Reach out and let's talk about your project.</p>
+				<a href="/#contact" class="ns-btn ns-btn--lg">Start a Conversation</a>
+			</div>
+		</section>
+	</main>
 
-  <Footer />
+	<Footer />
 </BaseLayout>
 
 <style>
-/* ---- Shared (repeated here so this page is self-contained) ---- */
-.ns-eyebrow {
-  display: inline-block;
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--accent-2);
-  margin-bottom: 1rem;
-}
-.ns-section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 1rem;
-}
-.ns-grad {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: black;
-  background-clip: text;
-}
-.ns-section-header { text-align: center; margin-bottom: 4rem; }
-.ns-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background .2s, transform .15s, box-shadow .2s;
-  white-space: nowrap;
-}
-.ns-btn--lg {
-  padding: .8rem 1.9rem;
-  font-size: 1rem;
-  background: var(--accent);
-  color: #110d0d;
-  border: 1.5px solid var(--accent);
-}
-.ns-btn--lg:hover {
-  background: #2a6aee;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(59,126,255,.4);
-}
+	/* ─── Shared ─────────────────────────────────────── */
+	.ns-eyebrow {
+		display: inline-block;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--accent-2);
+		margin-bottom: 1rem;
+		padding: 0.28rem 0.85rem;
+		background: rgba(0, 212, 255, 0.07);
+		border: 1px solid rgba(0, 212, 255, 0.2);
+		border-radius: 999px;
+	}
+	.ns-section-title {
+		font-size: clamp(2rem, 4vw, 3rem);
+		font-weight: 800;
+		color: var(--text);
+		margin-bottom: 1rem;
+	}
+	.ns-grad {
+		background: linear-gradient(135deg, var(--accent), var(--accent-2));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+	.ns-section-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
 
-/* ---- About Header ---- */
-.ns-about { padding-top: 80px; }
-.ns-about__header {
-  position: relative;
-  padding: 6rem 7% 5rem;
-  overflow: hidden;
-  background: var(--navy-2);
-  border-bottom: 1px solid var(--border);
-}
-.ns-about__header-bg { position: absolute; inset: 0; pointer-events: none; }
-.ns-about__header-glow {
-  position: absolute;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(59,126,255,.18) 0%, transparent 70%);
-  top: -100px; right: -100px;
-  filter: blur(60px);
-}
-.ns-about__header-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(59,126,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,126,255,.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-.ns-about__header-inner {
-  max-width: 700px;
-  position: relative;
-  z-index: 1;
-}
-.ns-about__title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 1.25rem;
-}
-.ns-about__desc {
-  font-size: 1rem;
-  color: var(--muted);
-  line-height: 1.8;
-  max-width: 540px;
-}
+	.ns-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-family: "Syne", sans-serif;
+		font-weight: 600;
+		border-radius: 8px;
+		cursor: pointer;
+		transition:
+			background 0.2s,
+			transform 0.15s,
+			box-shadow 0.2s;
+		white-space: nowrap;
+		border: none;
+		text-decoration: none;
+	}
+	.ns-btn--lg {
+		padding: 0.8rem 1.9rem;
+		font-size: 1rem;
+		background: var(--accent);
+		color: #fff;
+	}
+	.ns-btn--lg:hover {
+		background: #2a6aee;
+		transform: translateY(-2px);
+		box-shadow: 0 12px 32px rgba(59, 126, 255, 0.4);
+	}
 
-/* ---- Values ---- */
-.ns-values {
-  padding: 4rem 7%;
-  background: var(--navy);
-  border-bottom: 1px solid var(--border);
-}
-.ns-values__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-.ns-value-item {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-.ns-value-num {
-  font-family: 'Syne', sans-serif;
-  font-size: .75rem;
-  font-weight: 700;
-  color: var(--accent);
-  opacity: .5;
-  letter-spacing: .1em;
-  padding-top: .15rem;
-}
-.ns-value-item h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: .4rem;
-}
-.ns-value-item p {
-  font-size: .85rem;
-  color: var(--muted);
-  line-height: 1.75;
-}
+	/* ─── Page top offset ───────────────────────────── */
+	.ns-about {
+		padding-top: 80px;
+	}
 
-/* ---- Team ---- */
-.ns-team { padding: 7rem 7%; background: var(--navy-2); }
-.ns-team__inner { max-width: 1100px; margin: 0 auto; }
+	/* ─── Header ────────────────────────────────────── */
+	.ns-about__header {
+		position: relative;
+		padding: 6rem 7% 5rem;
+		overflow: hidden;
+		background: var(--navy-2);
+		border-bottom: 1px solid var(--border);
+	}
+	.ns-about__header-bg {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+	.ns-about__header-glow {
+		position: absolute;
+		width: 500px;
+		height: 500px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(59, 126, 255, 0.18) 0%, transparent 70%);
+		top: -100px;
+		right: -100px;
+		filter: blur(60px);
+	}
+	.ns-about__header-grid {
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(rgba(59, 126, 255, 0.05) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(59, 126, 255, 0.05) 1px, transparent 1px);
+		background-size: 50px 50px;
+	}
+	.ns-about__header-inner {
+		max-width: 700px;
+		position: relative;
+		z-index: 1;
+	}
+	.ns-about__title {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-weight: 800;
+		color: var(--text);
+		margin-bottom: 1.25rem;
+	}
+	.ns-about__desc {
+		font-size: 1rem;
+		color: var(--muted);
+		line-height: 1.8;
+		max-width: 540px;
+	}
 
-.ns-team__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-}
-.ns-member-card {
-  background: var(--navy-3);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: border-color .25s, transform .25s;
-}
-.ns-member-card:hover {
-  border-color: rgba(59,126,255,.35);
-  transform: translateY(-3px);
-}
+	/* ─── Values ─────────────────────────────────────── */
+	.ns-values {
+		padding: 4rem 7%;
+		background: var(--navy);
+		border-bottom: 1px solid var(--border);
+	}
+	.ns-values__inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+	}
+	.ns-value-item {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
+	}
+	.ns-value-num {
+		font-family: "Syne", sans-serif;
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--accent);
+		opacity: 0.5;
+		letter-spacing: 0.1em;
+		padding-top: 0.15rem;
+		flex-shrink: 0;
+	}
+	.ns-value-item h3 {
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: var(--text);
+		margin-bottom: 0.4rem;
+	}
+	.ns-value-item p {
+		font-size: 0.82rem;
+		color: var(--muted);
+		line-height: 1.75;
+	}
 
-/* Photo placeholder */
-.ns-member-photo {
-  height: 200px;
-  background: linear-gradient(135deg, var(--c, #3b7eff)22, var(--c, #3b7eff)08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.ns-member-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
-}
-.ns-member-avatar {
-  font-family: 'Syne', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--c, #3b7eff);
-  opacity: .4;
-  letter-spacing: .05em;
-  z-index: 1;
-}
-.ns-member-photo-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 50%, var(--navy-3) 100%);
-}
+	/* ─── Meet the Team ──────────────────────────────── */
+	.ns-team {
+		padding: 5rem 7%;
+		background: var(--navy-2);
+		border-bottom: 1px solid var(--border);
+	}
+	.ns-team__inner {
+		max-width: 1400px;
+		margin: 0 auto;
+	}
 
-/* Info */
-.ns-member-info { padding: 1.5rem 1.75rem 1.75rem; }
-.ns-member-name {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: .2rem;
-}
-.ns-member-role {
-  display: block;
-  font-size: .78rem;
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  margin-bottom: .85rem;
-}
-.ns-member-bio {
-  font-size: .875rem;
-  color: var(--muted);
-  line-height: 1.8;
-  margin-bottom: 1rem;
-}
-.ns-member-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem;
-}
-.ns-member-skills span {
-  font-size: .68rem;
-  color: var(--muted);
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: .2rem .55rem;
-}
+	.ns-founder-card {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+		background: var(--navy-3);
+		border: 1px solid var(--border);
+		border-radius: 28px;
+		padding: 3rem;
+		transition:
+			border-color 0.3s,
+			box-shadow 0.3s;
+		min-height: 500px;
+	}
+	.ns-founder-card:hover {
+		border-color: rgba(59, 126, 255, 0.35);
+		box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+	}
 
-/* Editor note */
-.ns-team__note {
-  background: rgba(59,126,255,.06);
-  border: 1px solid rgba(59,126,255,.2);
-  border-radius: 10px;
-  padding: 1rem 1.25rem;
-  font-size: .8rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.ns-team__note strong { color: var(--accent); }
-.ns-team__note code {
-  background: rgba(255,255,255,.06);
-  border-radius: 4px;
-  padding: .1rem .35rem;
-  font-size: .75rem;
-  color: var(--accent-2);
-}
+	/* Photo */
+	.ns-founder-img-wrap {
+		position: relative;
+		border-radius: 18px;
+		overflow: hidden;
+		aspect-ratio: 3/4;
+		flex-shrink: 0;
+		box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+		height: 100%;
+		min-height: 450px;
+	}
+	.ns-founder-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top center;
+		display: block;
+		filter: grayscale(25%);
+		transition:
+			filter 0.5s,
+			transform 0.5s;
+	}
+	.ns-founder-card:hover .ns-founder-img {
+		filter: grayscale(0%);
+		transform: scale(1.03);
+	}
+	.ns-founder-img-glow {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to top, rgba(4, 6, 14, 0.75) 0%, transparent 55%);
+		pointer-events: none;
+	}
 
-/* ---- Skills Section ---- */
-.ns-skills {
-  padding: 7rem 7%;
-  background: var(--navy);
-  border-bottom: 1px solid var(--border);
-}
-.ns-skills__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 5rem;
-  align-items: center;
-}
-.ns-skills__content {
-  display: flex;
-  flex-direction: column;
-}
-.ns-skills__title {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-.ns-skills__subtitle {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: black;
-  background-clip: text;
-  display: inline;
-}
-.ns-skills__desc {
-  font-size: .95rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
+	/* Typing badge */
+	.ns-founder-role-badge {
+		position: absolute;
+		bottom: 1.2rem;
+		left: 50%;
+		transform: translateX(-50%);
+		background: rgba(4, 6, 14, 0.85);
+		backdrop-filter: blur(14px);
+		border: 1px solid rgba(59, 126, 255, 0.35);
+		border-radius: 999px;
+		padding: 0.45rem 1.3rem;
+		font-size: 0.78rem;
+		font-weight: 600;
+		color: var(--accent-2);
+		letter-spacing: 0.05em;
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		min-width: 210px;
+		justify-content: center;
+		white-space: nowrap;
+	}
+	.ns-cursor {
+		color: var(--accent);
+		font-weight: 300;
+		animation: blink 0.7s step-end infinite;
+	}
+	@keyframes blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+	}
 
-.ns-skills__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
-.ns-skill-badge {
-  display: flex;
-  align-items: center;
-  gap: .8rem;
-  background: var(--navy-3);
-  border: 1px solid rgba(59,126,255,.15);
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
-  transition: all .25s;
-  cursor: default;
-}
-.ns-skill-badge:hover {
-  border-color: rgba(59,126,255,.35);
-  background: rgba(59,126,255,.06);
-  transform: translateY(-2px);
-}
-.ns-skill-icon {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ns-skill-badge span:last-child {
-  font-size: .95rem;
-  font-weight: 500;
-  color: var(--text);
-}
+	/* Info */
+	.ns-founder-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+	}
+	.ns-founder-name {
+		font-size: clamp(1.9rem, 3vw, 2.6rem);
+		font-weight: 800;
+		color: var(--text);
+		letter-spacing: -0.02em;
+		margin-bottom: 1.4rem;
+		line-height: 1.1;
+	}
+	.ns-founder-bio {
+		font-size: 0.95rem;
+		color: var(--muted);
+		line-height: 1.95;
+		margin-bottom: 2rem;
+		border-left: 2px solid var(--accent);
+		padding-left: 1.2rem;
+	}
+	.ns-founder-skills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	.ns-founder-skills span {
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--accent-2);
+		background: rgba(0, 212, 255, 0.07);
+		border: 1px solid rgba(0, 212, 255, 0.2);
+		border-radius: 999px;
+		padding: 0.3rem 0.9rem;
+		transition:
+			background 0.2s,
+			border-color 0.2s,
+			transform 0.15s;
+	}
+	.ns-founder-skills span:hover {
+		background: rgba(0, 212, 255, 0.15);
+		border-color: rgba(0, 212, 255, 0.5);
+		transform: translateY(-1px);
+	}
 
-/* ---- CTA strip ---- */
-.ns-about__cta {
-  padding: 5rem 7%;
-  background: var(--navy);
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-.ns-about__cta-inner { max-width: 500px; margin: 0 auto; }
-.ns-about__cta h2 {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: .6rem;
-}
-.ns-about__cta p {
-  font-size: .95rem;
-  color: var(--muted);
-  margin-bottom: 2rem;
-}
+	/* ─── Skills ─────────────────────────────────────── */
+	.ns-skills {
+		padding: 7rem 7%;
+		background: var(--navy);
+		border-bottom: 1px solid var(--border);
+	}
+	.ns-skills__inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1.5fr;
+		gap: 5rem;
+		align-items: center;
+	}
+	.ns-skills__content {
+		display: flex;
+		flex-direction: column;
+	}
+	.ns-skills__title {
+		font-size: clamp(2rem, 4vw, 3.5rem);
+		font-weight: 800;
+		color: var(--text);
+		line-height: 1.2;
+		margin-bottom: 1rem;
+	}
+	.ns-skills__desc {
+		font-size: 0.95rem;
+		color: var(--muted);
+		line-height: 1.7;
+	}
+	.ns-skills__grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.1rem;
+	}
+	.ns-skill-badge {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		background: var(--navy-3);
+		border: 1px solid rgba(59, 126, 255, 0.12);
+		border-radius: 12px;
+		padding: 1rem 1.25rem;
+		transition: all 0.25s;
+		cursor: default;
+	}
+	.ns-skill-badge:hover {
+		border-color: rgba(59, 126, 255, 0.35);
+		background: rgba(59, 126, 255, 0.06);
+		transform: translateY(-2px);
+	}
+	.ns-skill-icon {
+		font-size: 1.4rem;
+	}
+	.ns-skill-badge span:last-child {
+		font-size: 0.92rem;
+		font-weight: 500;
+		color: var(--text);
+	}
 
-@media (max-width: 768px) {
-  .ns-values__inner { grid-template-columns: 1fr; }
-  .ns-team__grid { grid-template-columns: 1fr; }
-  .ns-skills__inner { grid-template-columns: 1fr; gap: 3rem; }
-  .ns-skills__grid { grid-template-columns: 1fr; }
-  .ns-team, .ns-values, .ns-about__header, .ns-skills { padding-inline: 5%; }
-}
+	/* ─── CTA Strip ──────────────────────────────────── */
+	.ns-about__cta {
+		padding: 5rem 7%;
+		background: var(--navy);
+		border-top: 1px solid var(--border);
+		text-align: center;
+	}
+	.ns-about__cta-inner {
+		max-width: 500px;
+		margin: 0 auto;
+	}
+	.ns-about__cta h2 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		font-weight: 800;
+		color: var(--text);
+		margin-bottom: 0.6rem;
+	}
+	.ns-about__cta p {
+		font-size: 0.95rem;
+		color: var(--muted);
+		margin-bottom: 2rem;
+	}
+
+	/* ─── Responsive ─────────────────────────────────── */
+	@media (max-width: 960px) {
+		.ns-founder-card {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+			padding: 2rem;
+		}
+		.ns-founder-img-wrap {
+			aspect-ratio: 4/3;
+			max-height: 400px;
+		}
+	}
+	@media (max-width: 768px) {
+		.ns-values__inner {
+			grid-template-columns: 1fr 1fr;
+		}
+		.ns-skills__inner {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+		.ns-skills__grid {
+			grid-template-columns: 1fr;
+		}
+		.ns-team,
+		.ns-values,
+		.ns-about__header,
+		.ns-skills {
+			padding-inline: 5%;
+		}
+	}
+	@media (max-width: 500px) {
+		.ns-values__inner {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>
+
+<script>
+	const roles = [
+		"Computer Engineer",
+		"UI/UX Designer",
+		"Frontend Developer",
+		"Digital Strategist",
+		"Photographer",
+		"Videographer",
+	];
+
+	const el = document.getElementById("ns-typing")!;
+	let roleIndex = 0;
+	let charIndex = 0;
+	let deleting = false;
+
+	const SPEED_TYPE = 75;
+	const SPEED_DELETE = 40;
+	const PAUSE_END = 1800;
+	const PAUSE_START = 400;
+
+	function tick() {
+		const current = roles[roleIndex];
+		if (!current) return;
+		if (!deleting) {
+			el.textContent = current.slice(0, charIndex + 1);
+			charIndex++;
+			if (charIndex === current.length) {
+				deleting = true;
+				setTimeout(tick, PAUSE_END);
+				return;
+			}
+			setTimeout(tick, SPEED_TYPE);
+		} else {
+			el.textContent = current.slice(0, charIndex - 1);
+			charIndex--;
+			if (charIndex === 0) {
+				deleting = false;
+				roleIndex = (roleIndex + 1) % roles.length;
+				setTimeout(tick, PAUSE_START);
+				return;
+			}
+			setTimeout(tick, SPEED_DELETE);
+		}
+	}
+
+	tick();
+</script>
