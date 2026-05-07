@@ -1,217 +1,672 @@
 ---
-const projects = [
-  {
-    title: "Verdana Realty",
-    category: "Real Estate Platform",
-    desc: "Full-stack property listing platform with advanced search, agent CRM integration, and mobile-first UI.",
-    tags: ["Next.js", "Node.js", "PostgreSQL"],
-    stat: "340% increase in lead capture",
-    color: "#3b7eff",
-  },
-  {
-    title: "Meridian Co.",
-    category: "Corporate Website",
-    desc: "Complete brand refresh and corporate site for a mid-market logistics company, including SEO and content strategy.",
-    tags: ["Astro", "Tailwind", "SEO"],
-    stat: "#1 ranking in target keywords",
-    color: "#00d4ff",
-  },
-  {
-    title: "Solara Wellness",
-    category: "E-Commerce & Booking",
-    desc: "Health and wellness e-commerce store with integrated booking system, subscription management, and custom checkout flow.",
-    tags: ["Shopify", "React", "Stripe"],
-    stat: "2.8× conversion uplift",
-    color: "#7c5cfc",
-  },
-  {
-    title: "Atlas FinTech",
-    category: "SaaS Dashboard",
-    desc: "Internal analytics dashboard for a fintech startup — data visualization, role-based access, and real-time reporting.",
-    tags: ["React", "D3.js", "REST API"],
-    stat: "From MVP to launch in 8 weeks",
-    color: "#00e5a0",
-  },
+import { Image } from "astro:assets";
+import img1 from "../assets/1.jpg";
+import img2 from "../assets/2.jpg";
+import img3 from "../assets/3.jpg";
+import img4 from "../assets/4.jpg";
+import img5 from "../assets/5.jpg";
+import img6 from "../assets/6.jpg";
+
+const slides = [
+	{ src: img1, alt: "Portfolio image 1" },
+	{ src: img2, alt: "Portfolio image 2" },
+	{ src: img3, alt: "Portfolio image 3" },
+	{ src: img4, alt: "Portfolio image 4" },
+	{ src: img5, alt: "Portfolio image 5" },
+	{ src: img6, alt: "Portfolio image 6" },
 ];
 ---
+
 <section class="ns-portfolio" id="portfolio">
-  <div class="ns-portfolio__inner">
-    <div class="ns-section-header">
-      <span class="ns-eyebrow">Portfolio</span>
-      <h2 class="ns-section-title">Work that<br /><span class="ns-grad">speaks for itself</span></h2>
-      <p class="ns-section-desc">A selection of projects delivered by our team — each one built to solve real business problems and drive measurable results.</p>
-    </div>
+	<div class="ns-portfolio__inner">
+		<div class="ns-section-header">
+			<span class="ns-eyebrow">Portfolio</span>
+			<h2 class="ns-section-title">Our <span class="ns-grad">Work</span></h2>
+			<p class="ns-section-desc">
+				A glimpse into the projects we've delivered.
+			</p>
+		</div>
 
-    <div class="ns-portfolio__grid">
-      {projects.map((p) => (
-        <div class="ns-project-card" style={`--accent-local:${p.color}`}>
-          <div class="ns-project-card__preview" aria-hidden="true">
-            <div class="ns-preview-chrome">
-              <span></span><span></span><span></span>
-            </div>
-            <div class="ns-preview-body">
-              <div class="ns-preview-nav"></div>
-              <div class="ns-preview-hero" style={`background:linear-gradient(135deg, ${p.color}22, ${p.color}08)`}>
-                <div class="ns-preview-lines">
-                  <div class="ns-preview-line" style={`background:${p.color}40;width:60%`}></div>
-                  <div class="ns-preview-line" style={`background:${p.color}25;width:40%`}></div>
-                  <div class="ns-preview-btn" style={`background:${p.color}`}></div>
-                </div>
-              </div>
-            </div>
-          </div>
+		<!-- Slideshow -->
+		<div class="ns-slideshow">
+			<div class="ns-slideshow__track" id="ns-track">
+				{
+					slides.map((s, i) => (
+						<div class={`ns-slide ${i === 0 ? "active" : ""}`} data-index={i}>
+							<button class="ns-slide__btn" aria-label={`Open ${s.alt}`} data-zoom={i}>
+								<Image src={s.src} alt={s.alt} width={900} height={560} class="ns-slide__img" />
+								<div class="ns-slide__overlay">
+									<svg
+										width="40"
+										height="40"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="white"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										aria-hidden="true"
+									>
+										<>
+											<circle cx="11" cy="11" r="8" />
+											<line x1="21" y1="21" x2="16.65" y2="16.65" />
+										</>
+										<>
+											<line x1="11" y1="8" x2="11" y2="14" />
+											<line x1="8" y1="11" x2="14" y2="11" />
+										</>
+									</svg>
+								</div>
+							</button>
+						</div>
+					))
+				}
+			</div>
 
-          <div class="ns-project-card__info">
-            <div class="ns-project-card__meta">
-              <span class="ns-project-cat">{p.category}</span>
-              <div class="ns-project-stat">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-                {p.stat}
-              </div>
-            </div>
-            <h3 class="ns-project-title">{p.title}</h3>
-            <p class="ns-project-desc">{p.desc}</p>
-            <div class="ns-project-tags">
-              {p.tags.map(t => <span>{t}</span>)}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
+			<!-- Prev / Next -->
+			<button class="ns-arrow ns-arrow--prev" id="ns-prev" aria-label="Previous slide">
+				<svg
+					width="22"
+					height="22"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<polyline points="15 18 9 12 15 6"></polyline>
+				</svg>
+			</button>
+			<button class="ns-arrow ns-arrow--next" id="ns-next" aria-label="Next slide">
+				<svg
+					width="22"
+					height="22"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<polyline points="9 18 15 12 9 6"></polyline>
+				</svg>
+			</button>
+
+			<!-- Dots -->
+			<div class="ns-dots" id="ns-dots" role="tablist">
+				{
+					slides.map((_, i) => (
+						<button
+							class={`ns-dot ${i === 0 ? "active" : ""}`}
+							data-dot={i}
+							role="tab"
+							aria-label={`Go to slide ${i + 1}`}
+							aria-selected={i === 0 ? "true" : "false"}
+						/>
+					))
+				}
+			</div>
+		</div>
+
+		<!-- Thumbnail strip -->
+		<div class="ns-thumbs" id="ns-thumbs">
+			{
+				slides.map((s, i) => (
+					<button
+						class={`ns-thumb ${i === 0 ? "active" : ""}`}
+						data-thumb={i}
+						aria-label={`View slide ${i + 1}`}
+					>
+						<Image src={s.src} alt={s.alt} width={140} height={90} class="ns-thumb__img" />
+					</button>
+				))
+			}
+		</div>
+	</div>
 </section>
 
+<!-- Lightbox -->
+<div
+	class="ns-lightbox"
+	id="ns-lightbox"
+	role="dialog"
+	aria-modal="true"
+	aria-label="Image zoom"
+	hidden
+>
+	<button class="ns-lightbox__close" id="ns-lb-close" aria-label="Close">
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2.5"
+			stroke-linecap="round"
+			aria-hidden="true"
+		>
+			<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+		</svg>
+	</button>
+	<button class="ns-lightbox__arrow ns-lightbox__arrow--prev" id="ns-lb-prev" aria-label="Previous">
+		<svg
+			width="28"
+			height="28"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2.5"
+			stroke-linecap="round"
+			aria-hidden="true"
+		>
+			<polyline points="15 18 9 12 15 6"></polyline>
+		</svg>
+	</button>
+	<div class="ns-lightbox__img-wrap">
+		<img id="ns-lb-img" src="" alt="" class="ns-lightbox__img" />
+	</div>
+	<button class="ns-lightbox__arrow ns-lightbox__arrow--next" id="ns-lb-next" aria-label="Next">
+		<svg
+			width="28"
+			height="28"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2.5"
+			stroke-linecap="round"
+			aria-hidden="true"
+		>
+			<polyline points="9 18 15 12 9 6"></polyline>
+		</svg>
+	</button>
+	<div class="ns-lightbox__counter" id="ns-lb-counter"></div>
+</div>
+
 <style>
-.ns-portfolio {
-  padding: 7rem 7%;
-  background: var(--navy-2);
-  position: relative;
-}
-.ns-portfolio::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,212,255,.5), transparent);
-}
-.ns-portfolio__inner { max-width: 1200px; margin: 0 auto; }
+	/* ── Section ── */
+	.ns-portfolio {
+		padding: 7rem 7%;
+		background: var(--navy-2);
+		position: relative;
+	}
+	.ns-portfolio::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(59, 126, 255, 0.4), transparent);
+	}
+	.ns-portfolio__inner {
+		max-width: 1100px;
+		margin: 0 auto;
+	}
 
-.ns-portfolio__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-.ns-project-card {
-  background: var(--navy-3);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  transition: border-color .25s, transform .25s, box-shadow .25s;
-}
-.ns-project-card:hover {
-  border-color: var(--accent-local);
-  transform: translateY(-4px);
-  box-shadow: 0 24px 48px rgba(0,0,0,.35);
-}
+	/* ── Section header ── */
+	.ns-section-header {
+		text-align: center;
+		margin-bottom: 3.5rem;
+	}
+	.ns-eyebrow {
+		display: inline-block;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin-bottom: 0.75rem;
+		padding: 0.3rem 0.9rem;
+		background: rgba(59, 126, 255, 0.08);
+		border: 1px solid rgba(59, 126, 255, 0.2);
+		border-radius: 999px;
+	}
+	.ns-section-title {
+		font-size: clamp(2rem, 4vw, 2.8rem);
+		font-weight: 800;
+		color: var(--text);
+		margin-bottom: 1rem;
+	}
+	.ns-grad {
+		background: linear-gradient(135deg, var(--accent), var(--accent-2));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: black;
+		background-clip: text;
+	}
+	.ns-section-desc {
+		font-size: 0.95rem;
+		color: var(--muted);
+		max-width: 520px;
+		margin: 0 auto;
+		line-height: 1.8;
+	}
 
-/* Browser mockup */
-.ns-project-card__preview {
-  border-bottom: 1px solid var(--border);
-  background: rgba(255,255,255,.02);
-}
-.ns-preview-chrome {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: .6rem 1rem;
-  border-bottom: 1px solid var(--border);
-}
-.ns-preview-chrome span {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.1);
-}
-.ns-preview-chrome span:first-child { background: #ff5f57; }
-.ns-preview-chrome span:nth-child(2) { background: #febc2e; }
-.ns-preview-chrome span:last-child { background: #28c840; }
-.ns-preview-body { padding: .75rem; }
-.ns-preview-nav {
-  height: 6px;
-  background: rgba(255,255,255,.06);
-  border-radius: 3px;
-  margin-bottom: .6rem;
-}
-.ns-preview-hero {
-  height: 100px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-}
-.ns-preview-lines { width: 100%; }
-.ns-preview-line {
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: .4rem;
-}
-.ns-preview-btn {
-  width: 60px; height: 18px;
-  border-radius: 4px;
-  margin-top: .6rem;
-  opacity: .85;
-}
+	/* ── Slideshow ── */
+	.ns-slideshow {
+		position: relative;
+		border-radius: 20px;
+		overflow: hidden;
+		background: var(--navy-3);
+		border: 1px solid var(--border);
+		box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+		margin-bottom: 1.25rem;
+		aspect-ratio: 16/9;
+	}
 
-/* Info */
-.ns-project-card__info { padding: 1.5rem 1.75rem 1.75rem; }
-.ns-project-card__meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: .75rem;
-}
-.ns-project-cat {
-  font-size: .68rem;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--accent-local, var(--accent));
-}
-.ns-project-stat {
-  display: flex;
-  align-items: center;
-  gap: .3rem;
-  font-size: .68rem;
-  color: var(--muted);
-}
-.ns-project-stat svg { color: var(--accent-local, var(--accent)); }
-.ns-project-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: .5rem;
-}
-.ns-project-desc {
-  font-size: .85rem;
-  color: var(--muted);
-  line-height: 1.75;
-  margin-bottom: 1rem;
-}
-.ns-project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem;
-}
-.ns-project-tags span {
-  font-size: .68rem;
-  color: var(--muted);
-  background: rgba(255,255,255,.05);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: .2rem .55rem;
-}
+	.ns-slideshow__track {
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
 
-@media (max-width: 768px) {
-  .ns-portfolio__grid { grid-template-columns: 1fr; }
-  .ns-portfolio { padding: 5rem 5%; }
-}
+	.ns-slide {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+		pointer-events: none;
+	}
+	.ns-slide.active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.ns-slide__btn {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		border: none;
+		background: none;
+		cursor: zoom-in;
+		position: relative;
+		overflow: hidden;
+	}
+	.ns-slide__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.ns-slide__btn:hover .ns-slide__img {
+		transform: scale(1.04);
+	}
+	.ns-slide__overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(10, 15, 35, 0.45);
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+	.ns-slide__btn:hover .ns-slide__overlay {
+		opacity: 1;
+	}
+	.ns-slide__overlay svg {
+		filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
+		transform: scale(0.85);
+		transition: transform 0.3s;
+	}
+	.ns-slide__btn:hover .ns-slide__overlay svg {
+		transform: scale(1);
+	}
+
+	/* ── Arrows ── */
+	.ns-arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 10;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(4, 6, 14, 0.7);
+		border: 1px solid rgba(59, 126, 255, 0.25);
+		color: #fff;
+		cursor: pointer;
+		transition:
+			background 0.2s,
+			border-color 0.2s,
+			transform 0.2s;
+		backdrop-filter: blur(8px);
+	}
+	.ns-arrow:hover {
+		background: var(--accent);
+		border-color: var(--accent);
+		transform: translateY(-50%) scale(1.08);
+	}
+	.ns-arrow--prev {
+		left: 1rem;
+	}
+	.ns-arrow--next {
+		right: 1rem;
+	}
+
+	/* ── Dots ── */
+	.ns-dots {
+		position: absolute;
+		bottom: 1.1rem;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		gap: 0.45rem;
+		z-index: 10;
+	}
+	.ns-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.3);
+		border: none;
+		cursor: pointer;
+		transition:
+			background 0.25s,
+			transform 0.25s,
+			width 0.25s;
+		padding: 0;
+	}
+	.ns-dot.active {
+		background: #fff;
+		width: 22px;
+		border-radius: 4px;
+	}
+	.ns-dot:hover:not(.active) {
+		background: rgba(255, 255, 255, 0.6);
+		transform: scale(1.2);
+	}
+
+	/* ── Thumbnail strip ── */
+	.ns-thumbs {
+		display: flex;
+		gap: 0.75rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.ns-thumb {
+		width: 100px;
+		height: 65px;
+		border-radius: 8px;
+		overflow: hidden;
+		border: 2px solid transparent;
+		cursor: pointer;
+		padding: 0;
+		background: none;
+		transition:
+			border-color 0.2s,
+			transform 0.2s,
+			box-shadow 0.2s;
+		flex-shrink: 0;
+	}
+	.ns-thumb:hover {
+		border-color: rgba(59, 126, 255, 0.5);
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+	}
+	.ns-thumb.active {
+		border-color: var(--accent);
+		box-shadow:
+			0 0 0 1px var(--accent),
+			0 8px 20px rgba(59, 126, 255, 0.3);
+	}
+	.ns-thumb__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.3s;
+	}
+	.ns-thumb:hover .ns-thumb__img {
+		transform: scale(1.08);
+	}
+
+	/* ── Lightbox ── */
+	.ns-lightbox {
+		position: fixed;
+		inset: 0;
+		z-index: 999;
+		background: rgba(4, 6, 14, 0.97);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		backdrop-filter: blur(12px);
+		animation: lbIn 0.25s ease;
+	}
+	.ns-lightbox[hidden] {
+		display: none;
+	}
+	@keyframes lbIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+	.ns-lightbox__img-wrap {
+		max-width: 90vw;
+		max-height: 88vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.ns-lightbox__img {
+		max-width: 90vw;
+		max-height: 85vh;
+		object-fit: contain;
+		border-radius: 12px;
+		box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+		animation: imgIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	@keyframes imgIn {
+		from {
+			transform: scale(0.92);
+			opacity: 0;
+		}
+		to {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+	.ns-lightbox__close {
+		position: absolute;
+		top: 1.5rem;
+		right: 1.5rem;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		color: #fff;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 0.2s;
+		z-index: 10;
+	}
+	.ns-lightbox__close:hover {
+		background: rgba(255, 255, 255, 0.2);
+	}
+	.ns-lightbox__arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		color: #fff;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 0.2s;
+		z-index: 10;
+	}
+	.ns-lightbox__arrow:hover {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+	.ns-lightbox__arrow--prev {
+		left: 1.5rem;
+	}
+	.ns-lightbox__arrow--next {
+		right: 1.5rem;
+	}
+	.ns-lightbox__counter {
+		position: absolute;
+		bottom: 1.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 0.8rem;
+		color: rgba(255, 255, 255, 0.5);
+		letter-spacing: 0.05em;
+	}
+
+	@media (max-width: 768px) {
+		.ns-portfolio {
+			padding: 5rem 5%;
+		}
+		.ns-thumb {
+			width: 72px;
+			height: 48px;
+		}
+		.ns-arrow {
+			width: 36px;
+			height: 36px;
+		}
+		.ns-lightbox__arrow--prev {
+			left: 0.5rem;
+		}
+		.ns-lightbox__arrow--next {
+			right: 0.5rem;
+		}
+	}
 </style>
+
+<script>
+	// ── Data ──
+	const total = 6;
+	// We'll reference actual rendered <img> srcs from the slides
+	let current = 0;
+	let lbIndex = 0;
+	let autoTimer: ReturnType<typeof setInterval>;
+
+	// ── Elements ──
+	const slides = Array.from(document.querySelectorAll<HTMLElement>(".ns-slide"));
+	const dots = Array.from(document.querySelectorAll<HTMLButtonElement>(".ns-dot"));
+	const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>(".ns-thumb"));
+	const prev = document.getElementById("ns-prev")!;
+	const next = document.getElementById("ns-next")!;
+	const lightbox = document.getElementById("ns-lightbox")!;
+	const lbImg = document.getElementById("ns-lb-img") as HTMLImageElement;
+	const lbClose = document.getElementById("ns-lb-close")!;
+	const lbPrev = document.getElementById("ns-lb-prev")!;
+	const lbNext = document.getElementById("ns-lb-next")!;
+	const lbCount = document.getElementById("ns-lb-counter")!;
+
+	function getImgSrc(index: number): string {
+		const img = slides[index]!.querySelector<HTMLImageElement>(".ns-slide__img");
+		return img?.src ?? "";
+	}
+	function getImgAlt(index: number): string {
+		const img = slides[index]!.querySelector<HTMLImageElement>(".ns-slide__img");
+		return img?.alt ?? "";
+	}
+
+	function goTo(index: number) {
+		slides[current]!.classList.remove("active");
+		dots[current]!.classList.remove("active");
+		dots[current]!.setAttribute("aria-selected", "false");
+		thumbs[current]!.classList.remove("active");
+
+		current = (index + total) % total;
+
+		slides[current]!.classList.add("active");
+		dots[current]!.classList.add("active");
+		dots[current]!.setAttribute("aria-selected", "true");
+		thumbs[current]!.classList.add("active");
+	}
+
+	function startAuto() {
+		clearInterval(autoTimer);
+		autoTimer = setInterval(() => goTo(current + 1), 4500);
+	}
+
+	prev.addEventListener("click", () => {
+		goTo(current - 1);
+		startAuto();
+	});
+	next.addEventListener("click", () => {
+		goTo(current + 1);
+		startAuto();
+	});
+
+	dots.forEach((d) => {
+		d.addEventListener("click", () => {
+			goTo(Number(d.dataset.dot));
+			startAuto();
+		});
+	});
+	thumbs.forEach((t) => {
+		t.addEventListener("click", () => {
+			goTo(Number(t.dataset.thumb));
+			startAuto();
+		});
+	});
+
+	// ── Lightbox ──
+	function openLightbox(index: number) {
+		lbIndex = (index + total) % total;
+		lbImg.src = getImgSrc(lbIndex);
+		lbImg.alt = getImgAlt(lbIndex);
+		lbCount.textContent = `${lbIndex + 1} / ${total}`;
+		lightbox.hidden = false;
+		document.body.style.overflow = "hidden";
+		lbClose.focus();
+	}
+	function closeLightbox() {
+		lightbox.hidden = true;
+		document.body.style.overflow = "";
+	}
+	function lbNavigate(dir: number) {
+		lbIndex = (lbIndex + dir + total) % total;
+		lbImg.src = getImgSrc(lbIndex);
+		lbImg.alt = getImgAlt(lbIndex);
+		lbCount.textContent = `${lbIndex + 1} / ${total}`;
+	}
+
+	slides.forEach((slide, i) => {
+		slide
+			.querySelector<HTMLButtonElement>(".ns-slide__btn")
+			?.addEventListener("click", () => openLightbox(i));
+	});
+
+	lbClose.addEventListener("click", closeLightbox);
+	lbPrev.addEventListener("click", () => lbNavigate(-1));
+	lbNext.addEventListener("click", () => lbNavigate(1));
+
+	lightbox.addEventListener("click", (e) => {
+		if (e.target === lightbox) closeLightbox();
+	});
+
+	document.addEventListener("keydown", (e) => {
+		if (lightbox.hidden) return;
+		if (e.key === "Escape") closeLightbox();
+		if (e.key === "ArrowLeft") lbNavigate(-1);
+		if (e.key === "ArrowRight") lbNavigate(1);
+	});
+
+	// Start autoplay
+	startAuto();
+</script>

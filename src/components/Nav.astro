@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import brandLogo from '../assets/BrandLogo.png';
+
 const links = [
   { href: "/#services",      label: "Services"      },
   { href: "/#capabilities",  label: "Capabilities"  },
@@ -7,15 +10,17 @@ const links = [
 ];
 ---
 <nav class="ns-nav" id="ns-nav">
-  <a href="/" class="ns-nav__logo" aria-label="Nightosphere home">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="14" cy="14" r="13" stroke="#3b7eff" stroke-width="1.5"/>
-      <circle cx="14" cy="14" r="7" fill="#3b7eff" opacity=".25"/>
-      <circle cx="14" cy="14" r="3" fill="#3b7eff"/>
-    </svg>
-    <span>Nightosphere</span>
+  <!-- Left: Logo image -->
+  <a href="/" class="ns-nav__logo-img" aria-label="Nightosphere home">
+    <Image src={brandLogo} alt="Nightosphere Logo" width={38} height={38} />
   </a>
 
+  <!-- Center: Brand name -->
+  <a href="/" class="ns-nav__brand" aria-label="Nightosphere home">
+    Nightosphere
+  </a>
+
+  <!-- Right: Nav links + CTA -->
   <ul class="ns-nav__links">
     {links.map(l => (
       <li><a href={l.href}>{l.label}</a></li>
@@ -43,46 +48,69 @@ const links = [
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
-  gap: 2rem;
-  padding: 1.1rem 5%;
-  background: rgba(10,15,30,0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  gap: 1.5rem;
+  padding: 0.9rem 5%;
+  background: rgba(4, 6, 14, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(59, 126, 255, 0.12);
   transition: background .3s;
 }
 .ns-nav.scrolled {
-  background: rgba(10,15,30,0.98);
+  background: rgba(4, 6, 14, 0.99);
 }
-.ns-nav__logo {
+
+/* Logo image on the left */
+.ns-nav__logo-img {
   display: flex;
   align-items: center;
-  gap: .6rem;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: -.01em;
-  white-space: nowrap;
+  flex-shrink: 0;
 }
+.ns-nav__logo-img img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+/* Centered brand name */
+.ns-nav__brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  white-space: nowrap;
+  text-transform: uppercase;
+  pointer-events: auto;
+}
+
+/* Nav links */
 .ns-nav__links {
   display: flex;
   list-style: none;
-  gap: .25rem;
-  margin-left: auto;
+  gap: 0.1rem;
+  justify-content: flex-end;
 }
 .ns-nav__links a {
-  font-size: .9rem;
-  font-weight: 400;
-  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 500;
+  color: #ffffff;
   padding: .4rem .85rem;
   border-radius: 6px;
   transition: color .2s, background .2s;
+  letter-spacing: 0.01em;
 }
 .ns-nav__links a:hover {
-  color: var(--text);
-  background: rgba(59,126,255,.08);
+  color: #ffffff;
+  background: rgba(59,126,255,.15);
 }
+
+/* CTA button */
 .ns-btn {
   display: inline-flex;
   align-items: center;
@@ -105,6 +133,8 @@ const links = [
   box-shadow: 0 8px 24px rgba(59,126,255,.35);
 }
 .ns-btn--sm { font-size: .8rem; padding: .45rem 1rem; }
+
+/* Burger */
 .ns-nav__burger {
   display: none;
   flex-direction: column;
@@ -113,23 +143,24 @@ const links = [
   border: none;
   cursor: pointer;
   padding: .3rem;
-  margin-left: auto;
 }
 .ns-nav__burger span {
   display: block;
   width: 22px;
   height: 2px;
-  background: var(--text);
+  background: #ffffff;
   border-radius: 2px;
   transition: transform .3s, opacity .3s;
 }
+
+/* Mobile menu */
 .ns-nav__mobile {
   display: none;
   position: fixed;
   top: 65px; left: 0; right: 0;
   z-index: 99;
-  background: var(--navy-2);
-  border-bottom: 1px solid var(--border);
+  background: rgba(4, 6, 14, 0.98);
+  border-bottom: 1px solid rgba(59,126,255,.12);
   padding: 1.5rem 5% 2rem;
   transform: translateY(-110%);
   transition: transform .35s cubic-bezier(.4,0,.2,1);
@@ -147,14 +178,20 @@ const links = [
   display: block;
   padding: .65rem 0;
   font-size: 1rem;
-  color: var(--text);
-  border-bottom: 1px solid var(--border);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(59,126,255,.12);
 }
 
 @media (max-width: 768px) {
+  .ns-nav {
+    grid-template-columns: auto 1fr auto;
+  }
   .ns-nav__links, .ns-nav > .ns-btn { display: none; }
   .ns-nav__burger { display: flex; }
   .ns-nav__mobile { display: block; }
+  .ns-nav__brand {
+    font-size: 1rem;
+  }
 }
 </style>
 
