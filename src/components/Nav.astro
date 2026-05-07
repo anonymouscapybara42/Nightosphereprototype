@@ -1,218 +1,247 @@
 ---
-import { Image } from 'astro:assets';
-import brandLogo from '../assets/BrandLogo.png';
+import { Image } from "astro:assets";
+import brandLogo from "../assets/BrandLogo.png";
 
 const links = [
-  { href: "/#services",      label: "Services"      },
-  { href: "/#capabilities",  label: "Capabilities"  },
-  { href: "/#portfolio",     label: "Portfolio"      },
-  { href: "/about",          label: "About"          },
+	{ href: "/#services", label: "Services" },
+	{ href: "/#capabilities", label: "Capabilities" },
+	{ href: "/#portfolio", label: "Portfolio" },
+	{ href: "/about", label: "About" },
 ];
 ---
+
 <nav class="ns-nav" id="ns-nav">
-  <!-- Left: Logo image -->
-  <a href="/" class="ns-nav__logo-img" aria-label="Nightosphere home">
-    <Image src={brandLogo} alt="Nightosphere Logo" width={38} height={38} />
-  </a>
+	<!-- Left: Logo image -->
+	<a href="/" class="ns-nav__logo-img" aria-label="Nightosphere home">
+		<Image src={brandLogo} alt="Nightosphere Logo" width={38} height={38} />
+	</a>
 
-  <!-- Center: Brand name -->
-  <a href="/" class="ns-nav__brand" aria-label="Nightosphere home">
-    Nightosphere
-  </a>
+	<!-- Center: Brand name -->
+	<a href="/" class="ns-nav__brand" aria-label="Nightosphere home"> Nightosphere </a>
 
-  <!-- Right: Nav links + CTA -->
-  <ul class="ns-nav__links">
-    {links.map(l => (
-      <li><a href={l.href}>{l.label}</a></li>
-    ))}
-  </ul>
+	<!-- Right: Nav links + CTA -->
+	<ul class="ns-nav__links">
+		{
+			links.map((l) => (
+				<li>
+					<a href={l.href}>{l.label}</a>
+				</li>
+			))
+		}
+	</ul>
 
-  <a href="/#contact" class="ns-btn ns-btn--sm">Get a Quote</a>
+	<a href="/#contact" class="ns-btn ns-btn--sm">Get a Quote</a>
 
-  <button class="ns-nav__burger" id="ns-burger" aria-label="Toggle menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+	<button class="ns-nav__burger" id="ns-burger" aria-label="Toggle menu" aria-expanded="false">
+		<span></span><span></span><span></span>
+	</button>
 </nav>
 
 <div class="ns-nav__mobile" id="ns-mobile">
-  <ul>
-    {links.map(l => (
-      <li><a href={l.href}>{l.label}</a></li>
-    ))}
-    <li><a href="/#contact" class="ns-btn" style="width:100%;justify-content:center;">Get a Quote</a></li>
-  </ul>
+	<ul>
+		{
+			links.map((l) => (
+				<li>
+					<a href={l.href}>{l.label}</a>
+				</li>
+			))
+		}
+		<li>
+			<a href="/#contact" class="ns-btn" style="width:100%;justify-content:center;">Get a Quote</a>
+		</li>
+	</ul>
 </div>
 
 <style>
-.ns-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 0.9rem 5%;
-  background: rgba(4, 6, 14, 0.92);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(59, 126, 255, 0.12);
-  transition: background .3s;
-}
-.ns-nav.scrolled {
-  background: rgba(4, 6, 14, 0.99);
-}
+	.ns-nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		display: grid;
+		grid-template-columns: auto 1fr auto auto;
+		align-items: center;
+		gap: 1.5rem;
+		padding: 0.9rem 5%;
+		background: rgba(4, 6, 14, 0.92);
+		backdrop-filter: blur(20px);
+		border-bottom: 1px solid rgba(59, 126, 255, 0.12);
+		transition: background 0.3s;
+	}
+	.ns-nav.scrolled {
+		background: rgba(4, 6, 14, 0.99);
+	}
 
-/* Logo image on the left */
-.ns-nav__logo-img {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.ns-nav__logo-img img {
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
-}
+	/* Logo image on the left */
+	.ns-nav__logo-img {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+	}
+	.ns-nav__logo-img img {
+		width: 38px;
+		height: 38px;
+		object-fit: contain;
+	}
 
-/* Centered brand name */
-.ns-nav__brand {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: 0.04em;
-  color: #ffffff;
-  white-space: nowrap;
-  text-transform: uppercase;
-  pointer-events: auto;
-}
+	/* Centered brand name */
+	.ns-nav__brand {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		font-family: "Syne", sans-serif;
+		font-weight: 800;
+		font-size: 1.15rem;
+		letter-spacing: 0.04em;
+		color: #ffffff;
+		white-space: nowrap;
+		text-transform: uppercase;
+		pointer-events: auto;
+	}
 
-/* Nav links */
-.ns-nav__links {
-  display: flex;
-  list-style: none;
-  gap: 0.1rem;
-  justify-content: flex-end;
-}
-.ns-nav__links a {
-  font-size: .88rem;
-  font-weight: 500;
-  color: #ffffff;
-  padding: .4rem .85rem;
-  border-radius: 6px;
-  transition: color .2s, background .2s;
-  letter-spacing: 0.01em;
-}
-.ns-nav__links a:hover {
-  color: #ffffff;
-  background: rgba(59,126,255,.15);
-}
+	/* Nav links */
+	.ns-nav__links {
+		display: flex;
+		list-style: none;
+		gap: 0.1rem;
+		justify-content: flex-end;
+	}
+	.ns-nav__links a {
+		font-size: 0.88rem;
+		font-weight: 500;
+		color: #ffffff;
+		padding: 0.4rem 0.85rem;
+		border-radius: 6px;
+		transition:
+			color 0.2s,
+			background 0.2s;
+		letter-spacing: 0.01em;
+	}
+	.ns-nav__links a:hover {
+		color: #ffffff;
+		background: rgba(59, 126, 255, 0.15);
+	}
 
-/* CTA button */
-.ns-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  padding: .55rem 1.3rem;
-  background: var(--accent);
-  color: #fff;
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  font-size: .875rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background .2s, transform .15s, box-shadow .2s;
-  white-space: nowrap;
-}
-.ns-btn:hover {
-  background: #2a6aee;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(59,126,255,.35);
-}
-.ns-btn--sm { font-size: .8rem; padding: .45rem 1rem; }
+	/* CTA button */
+	.ns-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.55rem 1.3rem;
+		background: var(--accent);
+		color: #fff;
+		font-family: "Syne", sans-serif;
+		font-weight: 600;
+		font-size: 0.875rem;
+		border-radius: 8px;
+		border: none;
+		cursor: pointer;
+		transition:
+			background 0.2s,
+			transform 0.15s,
+			box-shadow 0.2s;
+		white-space: nowrap;
+	}
+	.ns-btn:hover {
+		background: #2a6aee;
+		transform: translateY(-1px);
+		box-shadow: 0 8px 24px rgba(59, 126, 255, 0.35);
+	}
+	.ns-btn--sm {
+		font-size: 0.8rem;
+		padding: 0.45rem 1rem;
+	}
 
-/* Burger */
-.ns-nav__burger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: .3rem;
-}
-.ns-nav__burger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #ffffff;
-  border-radius: 2px;
-  transition: transform .3s, opacity .3s;
-}
+	/* Burger */
+	.ns-nav__burger {
+		display: none;
+		flex-direction: column;
+		gap: 5px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.3rem;
+	}
+	.ns-nav__burger span {
+		display: block;
+		width: 22px;
+		height: 2px;
+		background: #ffffff;
+		border-radius: 2px;
+		transition:
+			transform 0.3s,
+			opacity 0.3s;
+	}
 
-/* Mobile menu */
-.ns-nav__mobile {
-  display: none;
-  position: fixed;
-  top: 65px; left: 0; right: 0;
-  z-index: 99;
-  background: rgba(4, 6, 14, 0.98);
-  border-bottom: 1px solid rgba(59,126,255,.12);
-  padding: 1.5rem 5% 2rem;
-  transform: translateY(-110%);
-  transition: transform .35s cubic-bezier(.4,0,.2,1);
-}
-.ns-nav__mobile.open {
-  transform: translateY(0);
-}
-.ns-nav__mobile ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-.ns-nav__mobile a {
-  display: block;
-  padding: .65rem 0;
-  font-size: 1rem;
-  color: #ffffff;
-  border-bottom: 1px solid rgba(59,126,255,.12);
-}
+	/* Mobile menu */
+	.ns-nav__mobile {
+		display: none;
+		position: fixed;
+		top: 65px;
+		left: 0;
+		right: 0;
+		z-index: 99;
+		background: rgba(4, 6, 14, 0.98);
+		border-bottom: 1px solid rgba(59, 126, 255, 0.12);
+		padding: 1.5rem 5% 2rem;
+		transform: translateY(-110%);
+		transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.ns-nav__mobile.open {
+		transform: translateY(0);
+	}
+	.ns-nav__mobile ul {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.ns-nav__mobile a {
+		display: block;
+		padding: 0.65rem 0;
+		font-size: 1rem;
+		color: #ffffff;
+	}
 
-@media (max-width: 768px) {
-  .ns-nav {
-    grid-template-columns: auto 1fr auto;
-  }
-  .ns-nav__links, .ns-nav > .ns-btn { display: none; }
-  .ns-nav__burger { display: flex; }
-  .ns-nav__mobile { display: block; }
-  .ns-nav__brand {
-    font-size: 1rem;
-  }
-}
+	@media (max-width: 768px) {
+		.ns-nav {
+			grid-template-columns: auto 1fr auto;
+		}
+		.ns-nav__links,
+		.ns-nav > .ns-btn {
+			display: none;
+		}
+		.ns-nav__burger {
+			display: flex;
+		}
+		.ns-nav__mobile {
+			display: block;
+		}
+		.ns-nav__brand {
+			font-size: 1rem;
+		}
+	}
 </style>
 
 <script>
-const nav     = document.getElementById('ns-nav')!;
-const burger  = document.getElementById('ns-burger')!;
-const mobile  = document.getElementById('ns-mobile')!;
+	const nav = document.getElementById("ns-nav")!;
+	const burger = document.getElementById("ns-burger")!;
+	const mobile = document.getElementById("ns-mobile")!;
 
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-});
+	window.addEventListener("scroll", () => {
+		nav.classList.toggle("scrolled", window.scrollY > 20);
+	});
 
-burger.addEventListener('click', () => {
-  const open = mobile.classList.toggle('open');
-  burger.setAttribute('aria-expanded', String(open));
-});
+	burger.addEventListener("click", () => {
+		const open = mobile.classList.toggle("open");
+		burger.setAttribute("aria-expanded", String(open));
+	});
 
-mobile.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    mobile.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-  });
-});
+	mobile.querySelectorAll("a").forEach((a) => {
+		a.addEventListener("click", () => {
+			mobile.classList.remove("open");
+			burger.setAttribute("aria-expanded", "false");
+		});
+	});
 </script>
