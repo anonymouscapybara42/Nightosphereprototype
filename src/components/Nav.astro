@@ -11,13 +11,11 @@ const links = [
 ---
 
 <nav class="ns-nav" id="ns-nav">
-	<!-- Left: Logo image -->
-	<a href="/" class="ns-nav__logo-img" aria-label="Nightosphere home">
+	<!-- Left: Logo + Brand -->
+	<a href="/" class="ns-nav__logo-group" aria-label="Nightosphere home">
 		<Image src={brandLogo} alt="Nightosphere Logo" width={38} height={38} />
+		<span class="ns-nav__brand">Nightosphere</span>
 	</a>
-
-	<!-- Center: Brand name -->
-	<a href="/" class="ns-nav__brand" aria-label="Nightosphere home"> Nightosphere </a>
 
 	<!-- Right: Nav links + CTA -->
 	<ul class="ns-nav__links">
@@ -71,28 +69,32 @@ const links = [
 			background 0.3s,
 			backdrop-filter 0.3s;
 	}
+
+	.ns-nav a {
+		text-decoration: none;
+	}
+
 	.ns-nav.scrolled {
 		background: rgba(4, 6, 14, 0.85);
 		backdrop-filter: blur(30px);
 	}
 
-	/* Logo image on the left */
-	.ns-nav__logo-img {
+	/* Logo + brand */
+	.ns-nav__logo-group {
 		display: flex;
 		align-items: center;
+		gap: 0.75rem;
 		flex-shrink: 0;
+		text-decoration: none;
 	}
-	.ns-nav__logo-img img {
+
+	.ns-nav__logo-group img {
 		width: 38px;
 		height: 38px;
 		object-fit: contain;
 	}
 
-	/* Centered brand name */
 	.ns-nav__brand {
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
 		font-family:
 			"Avenir Next",
 			-apple-system,
@@ -105,7 +107,7 @@ const links = [
 		color: #ffffff;
 		white-space: nowrap;
 		text-transform: uppercase;
-		pointer-events: auto;
+		text-decoration: none;
 	}
 
 	/* Nav links */
@@ -115,6 +117,7 @@ const links = [
 		gap: 0.1rem;
 		justify-content: flex-end;
 	}
+
 	.ns-nav__links a {
 		font-size: 0.88rem;
 		font-weight: 300;
@@ -131,7 +134,9 @@ const links = [
 			BlinkMacSystemFont,
 			"Segoe UI",
 			sans-serif;
+		text-decoration: none;
 	}
+
 	.ns-nav__links a:hover {
 		color: #ffffff;
 		background: rgba(59, 126, 255, 0.15);
@@ -161,12 +166,15 @@ const links = [
 			transform 0.15s,
 			box-shadow 0.2s;
 		white-space: nowrap;
+		text-decoration: none;
 	}
+
 	.ns-btn:hover {
 		background: #2a6aee;
 		transform: translateY(-1px);
 		box-shadow: 0 8px 24px rgba(59, 126, 255, 0.35);
 	}
+
 	.ns-btn--sm {
 		font-size: 0.8rem;
 		padding: 0.45rem 1rem;
@@ -182,6 +190,7 @@ const links = [
 		cursor: pointer;
 		padding: 0.3rem;
 	}
+
 	.ns-nav__burger span {
 		display: block;
 		width: 22px;
@@ -207,15 +216,18 @@ const links = [
 		transform: translateY(-110%);
 		transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 	}
+
 	.ns-nav__mobile.open {
 		transform: translateY(0);
 	}
+
 	.ns-nav__mobile ul {
 		list-style: none;
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
 	}
+
 	.ns-nav__mobile a {
 		display: block;
 		padding: 0.65rem 0;
@@ -228,22 +240,27 @@ const links = [
 			"Segoe UI",
 			sans-serif;
 		font-weight: 300;
+		text-decoration: none;
 	}
 
 	@media (max-width: 768px) {
 		.ns-nav {
 			grid-template-columns: auto 1fr auto;
 		}
+
 		.ns-nav__links,
 		.ns-nav > .ns-btn {
 			display: none;
 		}
+
 		.ns-nav__burger {
 			display: flex;
 		}
+
 		.ns-nav__mobile {
 			display: block;
 		}
+
 		.ns-nav__brand {
 			font-size: 1rem;
 		}
