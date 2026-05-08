@@ -21,7 +21,7 @@ import profileImage from "../assets/profile.jpg";
 			<div class="ns-about__header-inner">
 				<span class="ns-eyebrow">The Team</span>
 				<h1 class="ns-about__title">
-					The minds behind<br /><span class="ns-grad">the outcome.</span>
+					The minds behind<br /><span class="ns-grad">the outcome</span>
 				</h1>
 				<p class="ns-about__desc">
 					We don't just build websites we design, brochures, and other creative materials to strengthen your brand's identity
@@ -100,7 +100,7 @@ import profileImage from "../assets/profile.jpg";
 					<!-- Right: Info -->
 					<div class="ns-founder-info">
 						<span class="ns-eyebrow">About</span>
-						<h3 class="ns-founder-name">Ashley Glaraga</h3>
+						<h3 class="ns-founder-name">Ashley G. Glaraga</h3>
 						<p class="ns-founder-bio">
 							We at Nightosphere Information Services are driven by innovation, creativity, and a
 							passion for building future-ready digital experiences. Led by Ashley Glaraga, with a
@@ -112,7 +112,7 @@ import profileImage from "../assets/profile.jpg";
 							<span>Computer Engineering</span>
 							<span>UI/UX Design</span>
 							<span>Frontend Development</span>
-							<span>Digital Strategy</span>
+							<span>Digital Marketing</span>
 							<span>Photography</span>
 							<span>Videography</span>
 						</div>
@@ -189,7 +189,7 @@ import profileImage from "../assets/profile.jpg";
 	.ns-grad {
 		background: linear-gradient(135deg, var(--accent), var(--accent-2));
 		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+		-webkit-text-fill-color: whitesmoke;
 		background-clip: text;
 	}
 	.ns-section-header {
@@ -230,55 +230,67 @@ import profileImage from "../assets/profile.jpg";
 		padding-top: 80px;
 	}
 
-	/* ─── Header ────────────────────────────────────── */
-	.ns-about__header {
-		position: relative;
-		padding: 6rem 7% 5rem;
-		overflow: hidden;
-		background: var(--navy-2);
-		border-bottom: 1px solid var(--border);
-	}
-	.ns-about__header-bg {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-	}
-	.ns-about__header-glow {
-		position: absolute;
-		width: 500px;
-		height: 500px;
-		border-radius: 50%;
-		background: radial-gradient(circle, rgba(59, 126, 255, 0.18) 0%, transparent 70%);
-		top: -100px;
-		right: -100px;
-		filter: blur(60px);
-	}
-	.ns-about__header-grid {
-		position: absolute;
-		inset: 0;
-		background-image:
-			linear-gradient(rgba(59, 126, 255, 0.05) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(59, 126, 255, 0.05) 1px, transparent 1px);
-		background-size: 50px 50px;
-	}
-	.ns-about__header-inner {
-		max-width: 700px;
-		position: relative;
-		z-index: 1;
-	}
-	.ns-about__title {
-		font-size: clamp(2.5rem, 5vw, 4rem);
-		font-weight: 800;
-		color: var(--text);
-		margin-bottom: 1.25rem;
-	}
-	.ns-about__desc {
-		font-size: 1rem;
-		color: var(--muted);
-		line-height: 1.8;
-		max-width: 540px;
-	}
+/* ─── Header ────────────────────────────────────── */
+.ns-about__header {
+	position: relative;
+	padding: 6rem 7% 5rem;
+	overflow: hidden;
+	background: var(--navy-2);
+	border-bottom: 1px solid var(--border);
+}
 
+.ns-about__header-bg {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.ns-about__header-glow {
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(59, 126, 255, 0.18) 0%, transparent 70%);
+	top: -100px;
+	right: -100px;
+	filter: blur(60px);
+}
+
+.ns-about__header-grid {
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(rgba(59, 126, 255, 0.05) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(59, 126, 255, 0.05) 1px, transparent 1px);
+	background-size: 50px 50px;
+}
+
+/* UPDATED CONTAINER */
+.ns-about__header-inner {
+	width: 100%;
+	max-width: 950px;
+	position: relative;
+	z-index: 1;
+}
+
+/* TITLE */
+.ns-about__title {
+	font-size: clamp(2.5rem, 5vw, 4rem);
+	font-weight: 800;
+	color: var(--text);
+	margin-bottom: 1.25rem;
+	line-height: 1.1;
+}
+
+/* UPDATED DESCRIPTION */
+.ns-about__desc {
+	font-size: 1rem;
+	color: var(--muted);
+	line-height: 1.9;
+	max-width: 820px;
+	text-wrap: pretty;
+}
+	
 	/* ─── Values ─────────────────────────────────────── */
 	.ns-values {
 		padding: 4rem 7%;

@@ -3,288 +3,252 @@ import { Image } from "astro:assets";
 import brandLogo from "../assets/BrandLogo.png";
 
 const links = [
-	{ href: "/#services", label: "Services" },
-	{ href: "/#capabilities", label: "Capabilities" },
-	{ href: "/#portfolio", label: "Portfolio" },
-	{ href: "/about", label: "About" },
+  { href: "/#services",      label: "Services"      },
+  { href: "/#capabilities",  label: "Capabilities"  },
+  { href: "/#portfolio",     label: "Portfolio"      },
+  { href: "/about",          label: "About"          },
 ];
 ---
 
 <nav class="ns-nav" id="ns-nav">
-	<!-- Left: Logo + Brand -->
-	<a href="/" class="ns-nav__logo-group" aria-label="Nightosphere home">
-		<Image src={brandLogo} alt="Nightosphere Logo" width={38} height={38} />
-		<span class="ns-nav__brand">Nightosphere</span>
-	</a>
+  <!-- Left: Logo + Brand -->
+  <a href="/" class="ns-nav__logo-group" aria-label="Nightosphere home">
+    <Image src={brandLogo} alt="Nightosphere Logo" width={38} height={38} />
+    <span class="ns-nav__brand">Nightosphere</span>
+  </a>
 
-	<!-- Right: Nav links + CTA -->
-	<ul class="ns-nav__links">
-		{
-			links.map((l) => (
-				<li>
-					<a href={l.href}>{l.label}</a>
-				</li>
-			))
-		}
-	</ul>
+  <!-- Center: Nav links -->
+  <ul class="ns-nav__links">
+    {links.map((l) => (
+      <li><a href={l.href}>{l.label}</a></li>
+    ))}
+  </ul>
 
-	<a href="/#contact" class="ns-btn ns-btn--sm">Get a Quote</a>
+  <!-- Right: Theme toggle + CTA -->
+  <div class="ns-nav__actions">
+    <button
+      id="ns-theme-toggle"
+      class="ns-theme-btn"
+      aria-label="Toggle light/dark mode"
+      title="Toggle theme"
+    >
+      <span id="ns-theme-icon">☀️</span>
+    </button>
+    <a href="/#contact" class="ns-btn ns-btn--sm">Get a Quote</a>
+  </div>
 
-	<button class="ns-nav__burger" id="ns-burger" aria-label="Toggle menu" aria-expanded="false">
-		<span></span><span></span><span></span>
-	</button>
+  <button class="ns-nav__burger" id="ns-burger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- Mobile drawer -->
 <div class="ns-nav__mobile" id="ns-mobile">
-	<ul>
-		{
-			links.map((l) => (
-				<li>
-					<a href={l.href}>{l.label}</a>
-				</li>
-			))
-		}
-		<li>
-			<a href="/#contact" class="ns-btn" style="width:100%;justify-content:center;">Get a Quote</a>
-		</li>
-	</ul>
+  <ul>
+    {links.map((l) => (
+      <li><a href={l.href}>{l.label}</a></li>
+    ))}
+    <li>
+      <a href="/#contact" class="ns-btn" style="width:100%;justify-content:center;">
+        Get a Quote
+      </a>
+    </li>
+  </ul>
 </div>
 
 <style>
-	.ns-nav {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 100;
-		display: grid;
-		grid-template-columns: auto 1fr auto auto;
-		align-items: center;
-		gap: 1.5rem;
-		padding: 0.9rem 5%;
-		background: rgba(4, 6, 14, 0.5);
-		backdrop-filter: blur(20px);
-		border-bottom: 1px solid rgba(59, 126, 255, 0.12);
-		transition:
-			background 0.3s,
-			backdrop-filter 0.3s;
-	}
+/* ── Nav shell ── */
+.ns-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.9rem 5%;
+  background: var(--nav-bg);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+}
+.ns-nav,
+.ns-nav * {
+  font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
 
-	.ns-nav a {
-		text-decoration: none;
-	}
+.ns-nav a { text-decoration: none; }
 
-	.ns-nav.scrolled {
-		background: rgba(4, 6, 14, 0.85);
-		backdrop-filter: blur(30px);
-	}
+.ns-nav.scrolled {
+  background: var(--nav-bg);
+  backdrop-filter: blur(32px);
+}
 
-	/* Logo + brand */
-	.ns-nav__logo-group {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		flex-shrink: 0;
-		text-decoration: none;
-	}
+/* Logo + brand */
+.ns-nav__logo-group {
+  display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
+}
+.ns-nav__logo-group img { width: 38px; height: 38px; object-fit: contain; }
+.ns-nav__brand {
+  font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 100;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: white;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
 
-	.ns-nav__logo-group img {
-		width: 38px;
-		height: 38px;
-		object-fit: contain;
-	}
+/* Nav links */
+.ns-nav__links {
+  display: flex; list-style: none; gap: 0.1rem; justify-content: flex-end;
+}
+.ns-nav__links a {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--text);
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.01em;
+}
+.ns-nav__links a:hover { background: rgba(59,126,255,0.13); }
 
-	.ns-nav__brand {
-		font-family:
-			"Avenir Next",
-			-apple-system,
-			BlinkMacSystemFont,
-			"Segoe UI",
-			sans-serif;
-		font-weight: 100;
-		font-size: 1.15rem;
-		letter-spacing: 0.04em;
-		color: #ffffff;
-		white-space: nowrap;
-		text-transform: uppercase;
-		text-decoration: none;
-	}
+/* Actions group */
+.ns-nav__actions {
+  display: flex; align-items: center; gap: 0.6rem;
+}
 
-	/* Nav links */
-	.ns-nav__links {
-		display: flex;
-		list-style: none;
-		gap: 0.1rem;
-		justify-content: flex-end;
-	}
+/* ── Theme toggle button ── */
+.ns-theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  flex-shrink: 0;
+}
+.ns-theme-btn:hover {
+  background: rgba(59,126,255,0.15);
+  border-color: var(--accent);
+  transform: scale(1.08);
+}
+/* Light mode adjustments */
+:root[data-theme="light"] .ns-theme-btn {
+  background: rgba(0,0,0,0.05);
+}
 
-	.ns-nav__links a {
-		font-size: 0.88rem;
-		font-weight: 300;
-		color: #ffffff;
-		padding: 0.4rem 0.85rem;
-		border-radius: 6px;
-		transition:
-			color 0.2s,
-			background 0.2s;
-		letter-spacing: 0.01em;
-		font-family:
-			"Avenir Next",
-			-apple-system,
-			BlinkMacSystemFont,
-			"Segoe UI",
-			sans-serif;
-		text-decoration: none;
-	}
+/* CTA */
+.ns-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.55rem 1.3rem;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.ns-btn:hover {
+  background: #2a6aee;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(59,126,255,0.35);
+}
+.ns-btn--sm { font-size: 0.8rem; padding: 0.45rem 1rem; }
 
-	.ns-nav__links a:hover {
-		color: #ffffff;
-		background: rgba(59, 126, 255, 0.15);
-	}
+/* Burger */
+.ns-nav__burger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 0.3rem;
+}
+.ns-nav__burger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s, background 0.3s;
+}
 
-	/* CTA button */
-	.ns-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		padding: 0.55rem 1.3rem;
-		background: var(--accent);
-		color: #fff;
-		font-family:
-			"Avenir Next",
-			-apple-system,
-			BlinkMacSystemFont,
-			"Segoe UI",
-			sans-serif;
-		font-weight: 300;
-		font-size: 0.875rem;
-		border-radius: 8px;
-		border: none;
-		cursor: pointer;
-		transition:
-			background 0.2s,
-			transform 0.15s,
-			box-shadow 0.2s;
-		white-space: nowrap;
-		text-decoration: none;
-	}
+/* Mobile menu */
+.ns-nav__mobile {
+  display: none; position: fixed; top: 65px; left: 0; right: 0; z-index: 99;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 5% 2rem;
+  transform: translateY(-110%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), background 0.4s;
+}
+.ns-nav__mobile.open { transform: translateY(0); }
+.ns-nav__mobile ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.ns-nav__mobile a {
+  display: block; padding: 0.65rem 0;
+  font-size: 1rem; color: var(--text);
+  font-weight: 300; text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
 
-	.ns-btn:hover {
-		background: #2a6aee;
-		transform: translateY(-1px);
-		box-shadow: 0 8px 24px rgba(59, 126, 255, 0.35);
-	}
-
-	.ns-btn--sm {
-		font-size: 0.8rem;
-		padding: 0.45rem 1rem;
-	}
-
-	/* Burger */
-	.ns-nav__burger {
-		display: none;
-		flex-direction: column;
-		gap: 5px;
-		background: none;
-		border: none;
-		cursor: pointer;
-		padding: 0.3rem;
-	}
-
-	.ns-nav__burger span {
-		display: block;
-		width: 22px;
-		height: 2px;
-		background: #ffffff;
-		border-radius: 2px;
-		transition:
-			transform 0.3s,
-			opacity 0.3s;
-	}
-
-	/* Mobile menu */
-	.ns-nav__mobile {
-		display: none;
-		position: fixed;
-		top: 65px;
-		left: 0;
-		right: 0;
-		z-index: 99;
-		background: rgba(4, 6, 14, 0.98);
-		border-bottom: 1px solid rgba(59, 126, 255, 0.12);
-		padding: 1.5rem 5% 2rem;
-		transform: translateY(-110%);
-		transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	.ns-nav__mobile.open {
-		transform: translateY(0);
-	}
-
-	.ns-nav__mobile ul {
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	.ns-nav__mobile a {
-		display: block;
-		padding: 0.65rem 0;
-		font-size: 1rem;
-		color: #ffffff;
-		font-family:
-			"Avenir Next",
-			-apple-system,
-			BlinkMacSystemFont,
-			"Segoe UI",
-			sans-serif;
-		font-weight: 300;
-		text-decoration: none;
-	}
-
-	@media (max-width: 768px) {
-		.ns-nav {
-			grid-template-columns: auto 1fr auto;
-		}
-
-		.ns-nav__links,
-		.ns-nav > .ns-btn {
-			display: none;
-		}
-
-		.ns-nav__burger {
-			display: flex;
-		}
-
-		.ns-nav__mobile {
-			display: block;
-		}
-
-		.ns-nav__brand {
-			font-size: 1rem;
-		}
-	}
+@media (max-width: 768px) {
+  .ns-nav { grid-template-columns: auto 1fr auto auto; }
+  .ns-nav__links { display: none; }
+  .ns-nav > .ns-btn { display: none; }
+  .ns-nav__burger { display: flex; }
+  .ns-nav__mobile { display: block; }
+  .ns-nav__brand { font-size: 1rem; }
+}
 </style>
 
 <script>
-	const nav = document.getElementById("ns-nav")!;
-	const burger = document.getElementById("ns-burger")!;
-	const mobile = document.getElementById("ns-mobile")!;
+  /* ── scroll class ── */
+  const nav    = document.getElementById("ns-nav")!;
+  const burger = document.getElementById("ns-burger")!;
+  const mobile = document.getElementById("ns-mobile")!;
 
-	window.addEventListener("scroll", () => {
-		nav.classList.toggle("scrolled", window.scrollY > 20);
-	});
+  window.addEventListener("scroll", () => {
+    nav.classList.toggle("scrolled", window.scrollY > 20);
+  });
 
-	burger.addEventListener("click", () => {
-		const open = mobile.classList.toggle("open");
-		burger.setAttribute("aria-expanded", String(open));
-	});
+  /* ── mobile menu ── */
+  burger.addEventListener("click", () => {
+    const open = mobile.classList.toggle("open");
+    burger.setAttribute("aria-expanded", String(open));
+  });
+  mobile.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => {
+      mobile.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+    });
+  });
 
-	mobile.querySelectorAll("a").forEach((a) => {
-		a.addEventListener("click", () => {
-			mobile.classList.remove("open");
-			burger.setAttribute("aria-expanded", "false");
-		});
-	});
+  /* ── THEME TOGGLE ── */
+  const html       = document.documentElement;
+  const toggleBtn  = document.getElementById("ns-theme-toggle")!;
+  const iconEl     = document.getElementById("ns-theme-icon")!;
+
+  function applyTheme(theme: string) {
+    if (theme === "light") {
+      html.setAttribute("data-theme", "light");
+      iconEl.textContent = "🌙"; // show moon when in light mode (click → go dark)
+    } else {
+      html.removeAttribute("data-theme");
+      iconEl.textContent = "☀️"; // show sun when in dark mode (click → go light)
+    }
+    try { localStorage.setItem("ns-theme", theme); } catch (_) {}
+  }
+
+  // Init icon based on current state
+  const saved = (() => { try { return localStorage.getItem("ns-theme"); } catch(_){ return null; } })();
+  applyTheme(saved ?? "dark");
+
+  toggleBtn.addEventListener("click", () => {
+    const current = html.getAttribute("data-theme");
+    applyTheme(current === "light" ? "dark" : "light");
+  });
 </script>
