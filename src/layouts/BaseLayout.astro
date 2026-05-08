@@ -14,25 +14,28 @@ const {
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
-
 		<title>{title}</title>
-
 		<link rel="stylesheet" href="/global.css" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<!-- Restore saved theme before paint to prevent flash -->
+		<script is:inline>
+			(function () {
+				try {
+					const t = localStorage.getItem("ns-theme");
+					if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+				} catch (_) {}
+			})();
+		</script>
 	</head>
 
 	<body>
-		<!-- Background -->
+		<!-- Dark gradient background -->
 		<div class="ns-bg"></div>
 
-		<!-- Floating blue particles -->
+		<!-- Floating blue squares -->
 		<div class="ns-squares" aria-hidden="true">
 			<div class="ns-square"></div>
 			<div class="ns-square"></div>
@@ -46,10 +49,17 @@ const {
 			<div class="ns-square"></div>
 		</div>
 
-		<!-- Canvas particles -->
-		<canvas id="ns-particles" aria-hidden="true"></canvas>
+		<!-- Page content sits in its own stacking layer -->
+		<div id="ns-page" class="ns-page-enter">
+			<slot />
+		</div>
 
-		<slot />
+		<!--
+			Particle canvas is placed AFTER #ns-page in the DOM.
+			z-index: 9999 + pointer-events: none puts it visually
+			in front of everything while remaining non-interactive.
+		-->
+		<canvas id="ns-particles" aria-hidden="true"></canvas>
 	</body>
 </html>
 
@@ -61,18 +71,9 @@ const {
 	html,
 	body {
 		background:
-			radial-gradient(
-				circle at top,
-				rgba(24, 45, 95, 0.4),
-				transparent 35%
-			),
-			radial-gradient(
-				circle at bottom right,
-				rgba(0, 120, 255, 0.15),
-				transparent 30%
-			),
+			radial-gradient(circle at top, rgba(24, 45, 95, 0.4), transparent 35%),
+			radial-gradient(circle at bottom right, rgba(0, 120, 255, 0.15), transparent 30%),
 			#050914;
-
 		min-height: 100%;
 	}
 
@@ -82,6 +83,16 @@ const {
 		overflow-x: hidden;
 	}
 
+	/* Light theme overrides */
+	:root[data-theme="light"] html,
+	:root[data-theme="light"] body {
+		background:
+			radial-gradient(circle at top, rgba(200, 220, 255, 0.5), transparent 40%),
+			radial-gradient(circle at bottom right, rgba(59, 126, 255, 0.1), transparent 30%),
+			#f0f3fa;
+		color: #0f172a;
+	}
+
 	/* ─────────────────────────────
 	   DARK OVERLAY
 	───────────────────────────── */
@@ -89,371 +100,177 @@ const {
 	.ns-bg {
 		position: fixed;
 		inset: 0;
-
 		z-index: -3;
-
-		background:
-			linear-gradient(
-				180deg,
-				rgba(2, 5, 14, 0.15),
-				rgba(2, 4, 12, 0.92)
-			);
-
+		background: linear-gradient(180deg, rgba(2, 5, 14, 0.15), rgba(2, 4, 12, 0.92));
 		pointer-events: none;
+		transition: opacity 0.4s;
+	}
+
+	:root[data-theme="light"] .ns-bg {
+		opacity: 0;
 	}
 
 	/* ─────────────────────────────
-	   FLOATING BLUE SQUARES
+	   FLOATING SQUARES
 	───────────────────────────── */
 
 	.ns-squares {
 		position: fixed;
 		inset: 0;
-
 		display: flex;
 		justify-content: space-around;
-
 		overflow: hidden;
-
 		z-index: -2;
 		pointer-events: none;
 	}
 
 	.ns-square {
 		align-self: flex-end;
-
 		width: 1em;
 		height: 1em;
-
 		background: rgba(59, 126, 255, 0.08);
-
 		border: 1px solid rgba(0, 212, 255, 0.08);
-
-		box-shadow:
-			0 0 12px rgba(59, 126, 255, 0.12),
-			0 0 28px rgba(0, 212, 255, 0.08);
-
+		box-shadow: 0 0 12px rgba(59, 126, 255, 0.12), 0 0 28px rgba(0, 212, 255, 0.08);
 		backdrop-filter: blur(2px);
-
 		transform: translateY(100%) rotate(-50deg);
-
 		animation: nsSquares 14s linear infinite;
 	}
 
-	.ns-square:nth-child(2) {
-		width: 3em;
-		height: 1.5em;
-
-		animation-delay: 1s;
-		animation-duration: 17s;
-
-		filter: blur(5px);
-	}
-
-	.ns-square:nth-child(3) {
-		width: 1em;
-		height: 2em;
-
-		animation-delay: 1.5s;
-		animation-duration: 8s;
-	}
-
-	.ns-square:nth-child(4) {
-		width: 1.5em;
-		height: 1em;
-
-		animation-delay: 0.5s;
-		animation-duration: 13s;
-
-		filter: blur(3px);
-	}
-
-	.ns-square:nth-child(5) {
-		width: 2em;
-		height: 1.25em;
-
-		animation-delay: 4s;
-		animation-duration: 11s;
-
-		filter: blur(2px);
-	}
-
-	.ns-square:nth-child(6) {
-		width: 2em;
-		height: 2.5em;
-
-		animation-delay: 2s;
-		animation-duration: 9s;
-
-		filter: blur(1px);
-	}
-
-	.ns-square:nth-child(7) {
-		width: 2em;
-		height: 5em;
-
-		animation-duration: 12s;
-
-		filter: blur(2.5px);
-	}
-
-	.ns-square:nth-child(8) {
-		width: 3em;
-		height: 1em;
-
-		animation-delay: 5s;
-		animation-duration: 18s;
-
-		filter: blur(6px);
-	}
-
-	.ns-square:nth-child(9) {
-		width: 2em;
-		height: 1.5em;
-
-		animation-duration: 9s;
-
-		filter: blur(0.5px);
-	}
-
-	.ns-square:nth-child(10) {
-		width: 2.4em;
-		height: 3em;
-
-		animation-delay: 6s;
-		animation-duration: 12s;
-
-		filter: blur(0.5px);
-	}
+	.ns-square:nth-child(2)  { width: 3em;   height: 1.5em; animation-delay: 1s;   animation-duration: 17s; filter: blur(5px); }
+	.ns-square:nth-child(3)  { width: 1em;   height: 2em;   animation-delay: 1.5s; animation-duration: 8s; }
+	.ns-square:nth-child(4)  { width: 1.5em; height: 1em;   animation-delay: 0.5s; animation-duration: 13s; filter: blur(3px); }
+	.ns-square:nth-child(5)  { width: 2em;   height: 1.25em;animation-delay: 4s;   animation-duration: 11s; filter: blur(2px); }
+	.ns-square:nth-child(6)  { width: 2em;   height: 2.5em; animation-delay: 2s;   animation-duration: 9s;  filter: blur(1px); }
+	.ns-square:nth-child(7)  { width: 2em;   height: 5em;                           animation-duration: 12s; filter: blur(2.5px); }
+	.ns-square:nth-child(8)  { width: 3em;   height: 1em;   animation-delay: 5s;   animation-duration: 18s; filter: blur(6px); }
+	.ns-square:nth-child(9)  { width: 2em;   height: 1.5em;                         animation-duration: 9s;  filter: blur(0.5px); }
+	.ns-square:nth-child(10) { width: 2.4em; height: 3em;   animation-delay: 6s;   animation-duration: 12s; filter: blur(0.5px); }
 
 	@keyframes nsSquares {
-		from {
-			transform: translateY(100vh) rotate(-50deg);
-		}
-
-		to {
-			transform: translateY(-120vh) rotate(20deg);
-		}
+		from { transform: translateY(100vh) rotate(-50deg); }
+		to   { transform: translateY(-120vh) rotate(20deg); }
 	}
 
 	/* ─────────────────────────────
-	   PARTICLE CANVAS
+	   PARTICLE CANVAS — FRONT
+	   z-index: 9999 places it above
+	   all page content.
+	   pointer-events: none keeps
+	   clicks/hovers passing through.
 	───────────────────────────── */
 
 	#ns-particles {
 		position: fixed;
 		inset: 0;
-
 		width: 100%;
 		height: 100%;
-
-		z-index: -1;
-
+		z-index: 9999;
 		pointer-events: none;
-
-		opacity: 0.95;
+		opacity: 0.9;
 	}
 
 	/* ─────────────────────────────
-	   CONTENT LAYER
+	   PAGE CONTENT
 	───────────────────────────── */
 
-	body > :not(#ns-particles):not(.ns-bg):not(.ns-squares) {
+	#ns-page {
 		position: relative;
 		z-index: 1;
 	}
 </style>
 
 <script>
+	/* ═══════════════════════════════
+	   PARTICLES
+	═══════════════════════════════ */
 	(function () {
-		const canvas =
-			document.getElementById(
-				"ns-particles"
-			) as HTMLCanvasElement;
-
+		const canvas = document.getElementById("ns-particles") as HTMLCanvasElement;
 		const ctx = canvas.getContext("2d")!;
-
-		/* CONFIG */
 
 		const CONFIG = {
 			count: 115,
-
 			minRadius: 0.8,
 			maxRadius: 2.4,
-
 			speed: 0.28,
-
 			linkDist: 130,
 			linkOpacity: 0.14,
-
-			colors: [
-				"#3b7eff",
-				"#00d4ff",
-				"#7c9fff",
-				"#8ab4ff",
-				"#4fc3ff",
-			],
+			colors: ["#3b7eff", "#00d4ff", "#7c9fff", "#8ab4ff", "#4fc3ff"],
 		};
 
 		interface Particle {
-			x: number;
-			y: number;
-
-			vx: number;
-			vy: number;
-
+			x: number; y: number;
+			vx: number; vy: number;
 			r: number;
-
 			color: string;
 			opacity: number;
 		}
 
-		let W = 0;
-		let H = 0;
-
-		let particles: Particle[] = [];
-
-		let raf: number;
+		let W = 0, H = 0, particles: Particle[] = [], raf: number;
 
 		function resize() {
 			W = canvas.width = window.innerWidth;
 			H = canvas.height = window.innerHeight;
 		}
 
-		function randBetween(a: number, b: number) {
-			return a + Math.random() * (b - a);
-		}
+		function randBetween(a: number, b: number) { return a + Math.random() * (b - a); }
 
 		function createParticle(): Particle {
 			const angle = Math.random() * Math.PI * 2;
-
-			const speed = randBetween(
-				0.05,
-				CONFIG.speed
-			);
-
+			const speed = randBetween(0.05, CONFIG.speed);
 			return {
 				x: Math.random() * W,
 				y: Math.random() * H,
-
 				vx: Math.cos(angle) * speed,
 				vy: Math.sin(angle) * speed,
-
-				r: randBetween(
-					CONFIG.minRadius,
-					CONFIG.maxRadius
-				),
-
-				color:
-					CONFIG.colors[
-						Math.floor(
-							Math.random() *
-								CONFIG.colors.length
-						)
-					]!,
-
+				r: randBetween(CONFIG.minRadius, CONFIG.maxRadius),
+				color: CONFIG.colors[Math.floor(Math.random() * CONFIG.colors.length)]!,
 				opacity: randBetween(0.25, 0.8),
 			};
 		}
 
 		function init() {
 			resize();
-
-			particles = Array.from(
-				{ length: CONFIG.count },
-				createParticle
-			);
+			particles = Array.from({ length: CONFIG.count }, createParticle);
 		}
 
 		function hexToRgb(hex: string): string {
 			const h = hex.replace("#", "");
-
-			const bigint = parseInt(h, 16);
-
-			const r = (bigint >> 16) & 255;
-			const g = (bigint >> 8) & 255;
-			const b = bigint & 255;
-
-			return `${r},${g},${b}`;
+			const n = parseInt(h, 16);
+			return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`;
 		}
 
 		const rgbCache: Record<string, string> = {};
-
-		CONFIG.colors.forEach((c) => {
-			rgbCache[c] = hexToRgb(c);
-		});
+		CONFIG.colors.forEach((c) => { rgbCache[c] = hexToRgb(c); });
 
 		function draw() {
 			ctx.clearRect(0, 0, W, H);
 
-			/* PARTICLES */
+			const isLight = document.documentElement.getAttribute("data-theme") === "light";
+			const linkRgb = isLight ? "37,99,235" : "59,126,255";
 
-			for (let i = 0; i < particles.length; i++) {
-				const p = particles[i]!;
-
-				p.x += p.vx;
-				p.y += p.vy;
-
-				/* Wrap */
-
-				if (p.x < -10) p.x = W + 10;
-				else if (p.x > W + 10) p.x = -10;
-
-				if (p.y < -10) p.y = H + 10;
-				else if (p.y > H + 10) p.y = -10;
+			for (const p of particles) {
+				p.x += p.vx; p.y += p.vy;
+				if (p.x < -10) p.x = W + 10; else if (p.x > W + 10) p.x = -10;
+				if (p.y < -10) p.y = H + 10; else if (p.y > H + 10) p.y = -10;
 
 				ctx.beginPath();
-
-				ctx.arc(
-					p.x,
-					p.y,
-					p.r,
-					0,
-					Math.PI * 2
-				);
-
-				ctx.fillStyle = `rgba(${
-					rgbCache[p.color] ??
-					"59,126,255"
-				},${p.opacity})`;
-
+				ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+				ctx.fillStyle = `rgba(${rgbCache[p.color] ?? linkRgb},${p.opacity})`;
 				ctx.fill();
 			}
 
-			/* CONNECTIONS */
-
 			for (let i = 0; i < particles.length; i++) {
-				for (
-					let j = i + 1;
-					j < particles.length;
-					j++
-				) {
-					const a = particles[i]!;
-					const b = particles[j]!;
-
-					const dx = a.x - b.x;
-					const dy = a.y - b.y;
-
-					const dist = Math.sqrt(
-						dx * dx + dy * dy
-					);
-
+				for (let j = i + 1; j < particles.length; j++) {
+					const a = particles[i]!, b = particles[j]!;
+					const dx = a.x - b.x, dy = a.y - b.y;
+					const dist = Math.sqrt(dx * dx + dy * dy);
 					if (dist < CONFIG.linkDist) {
-						const alpha =
-							CONFIG.linkOpacity *
-							(1 -
-								dist /
-									CONFIG.linkDist);
-
+						const alpha = CONFIG.linkOpacity * (1 - dist / CONFIG.linkDist);
 						ctx.beginPath();
-
 						ctx.moveTo(a.x, a.y);
 						ctx.lineTo(b.x, b.y);
-
-						ctx.strokeStyle = `rgba(59,126,255,${alpha})`;
-
+						ctx.strokeStyle = `rgba(${linkRgb},${alpha})`;
 						ctx.lineWidth = 0.7;
-
 						ctx.stroke();
 					}
 				}
@@ -462,18 +279,27 @@ const {
 			raf = requestAnimationFrame(draw);
 		}
 
-		/* RESIZE */
-
-		window.addEventListener("resize", () => {
-			cancelAnimationFrame(raf);
-
-			resize();
-			draw();
-		});
-
-		/* INIT */
-
+		window.addEventListener("resize", () => { cancelAnimationFrame(raf); resize(); draw(); });
 		init();
 		draw();
+	})();
+
+	/* ═══════════════════════════════
+	   SCROLL-REVEAL
+	═══════════════════════════════ */
+	(function () {
+		const selectors = ".ns-reveal, .ns-reveal-left, .ns-reveal-right, .ns-reveal-scale";
+		const io = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("ns-visible");
+						io.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+		);
+		document.querySelectorAll(selectors).forEach((el) => io.observe(el));
 	})();
 </script>
