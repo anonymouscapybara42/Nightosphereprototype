@@ -20,35 +20,71 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
 	<body>
-		<!-- Particles canvas — sits behind everything -->
+		<!-- Particles canvas — fixed behind all page content -->
 		<canvas id="ns-particles" aria-hidden="true"></canvas>
-		<slot />
+
+		<!-- All page content renders above the canvas -->
+		<div id="ns-content">
+			<slot />
+		</div>
 	</body>
 </html>
 
 <style>
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		min-height: 100%;
+	}
+
+	/*
+	  Canvas sits behind everything at z-index: -1.
+	  Fixed to viewport, never scrolls, never blocks clicks.
+	*/
 	#ns-particles {
 		position: fixed;
 		inset: 0;
-		z-index: 0;
-		pointer-events: none;
 		width: 100%;
 		height: 100%;
+		z-index: -1;
+		pointer-events: none;
 	}
 
-	/* Push all direct children of body above the canvas */
-	body > :not(#ns-particles) {
+	/*
+	  Content wrapper is a normal stacking context above the canvas.
+	  isolation: isolate prevents any child from accidentally
+	  punching through to the canvas layer below.
+	*/
+	#ns-content {
 		position: relative;
-		z-index: 1;
+		z-index: 0;
+		isolation: isolate;
+	}
+
+	/*
+	  This is the key fix:
+	  Any section, nav, card, or div that has no background
+	  will be transparent — letting the canvas show through.
+	  We force every direct section/component to have at least
+	  a near-opaque background so particles can't bleed through.
+	*/
+	#ns-content section,
+	#ns-content nav,
+	#ns-content header,
+	#ns-content footer {
+		position: relative;
+		isolation: isolate;
 	}
 </style>
 
 <script>
 	(function () {
-		const canvas = document.getElementById("ns-particles") as HTMLCanvasElement;
+		const canvas = document.getElementById(
+			"ns-particles"
+		) as HTMLCanvasElement;
 		const ctx = canvas.getContext("2d")!;
 
-		// ── Config (tuned to match Nightosphere dark blue palette) ──
 		const CONFIG = {
 			count: 110,
 			minRadius: 0.8,
@@ -57,7 +93,6 @@ const {
 			linkDist: 130,
 			linkOpacity: 0.18,
 			colors: ["#3b7eff", "#00d4ff", "#7c9fff", "#ffffff"],
-			bgColor: "transparent",
 		};
 
 		interface Particle {
@@ -93,7 +128,9 @@ const {
 				vx: Math.cos(angle) * speed,
 				vy: Math.sin(angle) * speed,
 				r: randBetween(CONFIG.minRadius, CONFIG.maxRadius),
-				color: CONFIG.colors[Math.floor(Math.random() * CONFIG.colors.length)]!,
+				color: CONFIG.colors[
+					Math.floor(Math.random() * CONFIG.colors.length)
+				]!,
 				opacity: randBetween(0.35, 0.85),
 			};
 		}
@@ -112,7 +149,6 @@ const {
 			return `${r},${g},${b}`;
 		}
 
-		// Pre-cache RGB strings
 		const rgbCache: Record<string, string> = {};
 		CONFIG.colors.forEach((c) => {
 			rgbCache[c] = hexToRgb(c);
@@ -122,26 +158,22 @@ const {
 		function draw() {
 			ctx.clearRect(0, 0, W, H);
 
-			// Update + draw particles
 			for (let i = 0; i < particles.length; i++) {
 				const p = particles[i]!;
 				p.x += p.vx;
 				p.y += p.vy;
 
-				// Wrap around edges
 				if (p.x < -10) p.x = W + 10;
 				else if (p.x > W + 10) p.x = -10;
 				if (p.y < -10) p.y = H + 10;
 				else if (p.y > H + 10) p.y = -10;
 
-				// Draw dot
 				ctx.beginPath();
 				ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
 				ctx.fillStyle = `rgba(${rgbCache[p.color] ?? "59,126,255"},${p.opacity})`;
 				ctx.fill();
 			}
 
-			// Draw connecting lines
 			for (let i = 0; i < particles.length; i++) {
 				for (let j = i + 1; j < particles.length; j++) {
 					const a = particles[i]!;
@@ -150,10 +182,11 @@ const {
 					const dy = a.y - b.y;
 					const dist = Math.sqrt(dx * dx + dy * dy);
 					if (dist < CONFIG.linkDist) {
-						const alpha = CONFIG.linkOpacity * (1 - dist / CONFIG.linkDist);
+						const alpha =
+							CONFIG.linkOpacity * (1 - dist / CONFIG.linkDist);
 						ctx.beginPath();
-						ctx.moveTo(a!.x, a!.y);
-						ctx.lineTo(b!.x, b!.y);
+						ctx.moveTo(a.x, a.y);
+						ctx.lineTo(b.x, b.y);
 						ctx.strokeStyle = `rgba(59,126,255,${alpha})`;
 						ctx.lineWidth = 0.6;
 						ctx.stroke();
@@ -164,25 +197,12 @@ const {
 			raf = requestAnimationFrame(draw);
 		}
 
-		// Mouse repulsion — subtle interactive touch
-		let mouse = { x: -9999, y: -9999 };
-		window.addEventListener("mousemove", (e) => {
-			mouse.x = e.clientX;
-			mouse.y = e.clientY;
-		});
-		window.addEventListener("mouseleave", () => {
-			mouse.x = -9999;
-			mouse.y = -9999;
-		});
-
-		// Re-size handler
 		window.addEventListener("resize", () => {
 			cancelAnimationFrame(raf);
 			resize();
 			draw();
 		});
 
-		// Kick off
 		init();
 		draw();
 	})();

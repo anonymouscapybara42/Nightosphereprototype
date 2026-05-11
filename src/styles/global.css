@@ -113,3 +113,51 @@ img { display: block; max-width: 100%; }
 :root[data-theme="light"] .ns-hover-lift:hover {
   box-shadow: 0 16px 40px rgba(37,99,235,0.13);
 }
+
+/* ─── PARTICLE OVERLAP FIX ──────────────────────────── */
+/*
+  The particle canvas is transparent, so it only blocks content
+  when elements behind it have no background (particles show
+  through the "holes"). These rules give every structural element
+  a solid background so nothing bleeds through.
+*/
+
+/* Every section/nav/header/footer gets a solid background
+   matching the current theme color. This is the main barrier
+   that stops the canvas from showing through. */
+section {
+  background: var(--bg-page);
+  position: relative;
+}
+
+/* Nav already has var(--nav-bg) set, but isolation: isolate
+   creates a new stacking context so nothing inside it can
+   accidentally slip below the canvas z-index. */
+nav,
+header,
+footer {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Cards and surface-level containers */
+[class*="ns-card"],
+[class*="ns-member"],
+[class*="ns-service"],
+[class*="ns-skill"],
+[class*="ns-founder"],
+[class*="ns-cap-item"],
+[class*="ns-value"] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Catch-all: any element with a background var already set
+   gets isolation so it properly blocks the canvas */
+[style*="background"],
+[class*="-card"],
+[class*="-section"],
+[class*="-wrap"],
+[class*="-inner"] {
+  isolation: isolate;
+}
