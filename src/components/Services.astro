@@ -163,21 +163,18 @@ const services = [
     transform: translateY(-2px);
   }
 
-  .ns-grad {
-    background: linear-gradient(
-      135deg,
-      var(--accent),
-      var(--accent-2)
-    );
+.ns-grad {
+  color: white, transparent;
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 
-    transition:
-      filter 0.3s ease,
-      transform 0.3s ease;
-  }
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+}
+
+.ns-grad:hover {
+  filter: brightness(1.2);
+}
 
   .ns-grad:hover {
     filter: brightness(1.2);
